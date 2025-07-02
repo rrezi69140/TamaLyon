@@ -1,0 +1,9 @@
+# Rpertoires  ignorer
+build/
+FILES/
+
+# Fichiers temporaires
+*.autosave
+.DS_Store
+CMakeLists.txt.user
+
