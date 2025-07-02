@@ -2,7 +2,7 @@
 #include <QDebug>
 
 LionManager::LionManager(QObject *parent):
-    QObject(parent),m_mood("endormi"){}
+    QObject(parent),m_mood("Triste"){}
 
 
  QString LionManager::mood() const {

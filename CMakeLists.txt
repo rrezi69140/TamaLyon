@@ -15,6 +15,7 @@ qt_add_executable(appTAMALYON
     LyonFace.qml
     Lion.h
     Lion.cpp
+    MoodBar.qml
 
 )
 
@@ -23,9 +24,10 @@ qt_add_resources(appTAMALYON "qml"
     FILES
         Main.qml
         LyonFace.qml
+        MoodBar.qml
         FILES/lion_affame.png
         FILES/lion_endormi.png
-        FILES/lion_joyeux.png
+
         FILES/lion_tres_content.png
         FILES/lion_triste.png
 )

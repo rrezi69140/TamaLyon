@@ -12,7 +12,7 @@ class LionManager : public QObject {
 
 
 private:
-    QString m_mood =  "Joyeux" ;
+    QString m_mood =  "Triste" ;
 public:
     explicit LionManager(QObject *parent = nullptr);
       QString mood() const;

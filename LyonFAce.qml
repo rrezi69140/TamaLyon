@@ -15,7 +15,7 @@ Item {
             if (lionManager.mood === "joyeux") {
                 return "qrc:/FILES/lion_tres_content.png"
             }
-            if (lionManager.mood === "triste") {
+            if (lionManager.mood === "Triste") {
                 return "qrc:/FILES/lion_triste.png"
             }
             if (lionManager.mood === "endormi") {
@@ -26,5 +26,8 @@ Item {
             }
             return ""
         }
+
+
+
     }
 }
