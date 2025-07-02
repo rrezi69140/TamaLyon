@@ -14,6 +14,7 @@ qt_add_executable(appTAMALYON
     main.cpp
     LyonFace.qml
     Lion.h
+    Lion.cpp
 
 )
 

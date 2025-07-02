@@ -2,12 +2,20 @@
 #include <QQmlApplicationEngine>
 #include <QFile>
 #include <QDebug>
+#include "Lion.h"
+#include <QQmlContext>
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
+
+
+    LionManager lion;
+
+    // 2️⃣ L'exposer à QML (nom d'accès : lionManager)
+    engine.rootContext()->setContextProperty("lionManager", &lion);
 
     qDebug() << "Main.qml exists:" << QFile::exists(":/Main.qml");
 
