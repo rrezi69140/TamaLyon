@@ -17,7 +17,7 @@ public:
     void setMood (const QString &newMood);
 
 signals:
-    void moodChanged();
+    void moodChange();
 
 public slots:
     void onMoodChange();
