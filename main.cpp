@@ -1,9 +1,11 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include <QFile>
-#include <QDebug>
-#include "Lion.h"
 #include <QQmlContext>
+#include <QDebug>
+
+#include "Lion.h"
+#include "WebSocketServer.h"
+#include "WebSocketClient.h"
 
 int main(int argc, char *argv[])
 {
@@ -11,21 +13,17 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
+    LionManager lionManager;
 
-    LionManager lion;
-
-    // 2️⃣ L'exposer à QML (nom d'accès : lionManager)
-    engine.rootContext()->setContextProperty("lionManager", &lion);
-
-    qDebug() << "Main.qml exists:" << QFile::exists(":/Main.qml");
+    // Exposer les classes au QML
+    engine.rootContext()->setContextProperty("lionManager", &lionManager);
 
     const QUrl url(u"qrc:/Main.qml"_qs);
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
-        if (!obj && objUrl == url)
-            QCoreApplication::exit(-1);
-    }, Qt::QueuedConnection);
-
+                         if (!obj && objUrl == url)
+                             QCoreApplication::exit(-1);
+                     }, Qt::QueuedConnection);
     engine.load(url);
 
     return app.exec();

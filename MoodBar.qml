@@ -1,15 +1,36 @@
 
-// MoodBar.qml
 import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.15
 
 Item {
     id: root
     property string mood: "joyeux"
-    width: 300
-    height: 80
+    width: 200
+    height: 50
 
+    // Nettoyage des effets quand l'humeur change
+    onMoodChanged: {
+        // Arrêter tous les effets existants
+        sunEffect.visible = false
+        rainEffect.visible = false
+        sleepEffect.visible = false
+        fireEffect.visible = false
+        
+        // Démarrer le bon effet après un court délai
+        effectTimer.start()
+    }
+
+    Timer {
+        id: effectTimer
+        interval: 100
+        onTriggered: {
+            sunEffect.visible = (mood === "joyeux")
+            rainEffect.visible = (mood === "triste")
+            sleepEffect.visible = (mood === "endormi")
+            fireEffect.visible = (mood === "affame")
+        }
+    }
+
+    // Barre d'humeur compacte
     Rectangle {
         id: moodBackground
         anchors.centerIn: parent
@@ -20,120 +41,130 @@ Item {
 
         gradient: Gradient {
             GradientStop { position: 0.0; color: mood === "joyeux" ? "#FFD700" :
-                                            mood === "triste" ? "#2c3e50" :
-                                            mood === "endormi" ? "#5B8DB8" :
-                                            mood === "affame" ? "#7B3F00" :
+                                            mood === "triste" ? "#4682B4" :
+                                            mood === "endormi" ? "#6A5ACD" :
+                                            mood === "affame" ? "#DC143C" :
                                             "#aaa" }
             GradientStop { position: 1.0; color: mood === "joyeux" ? "#FFA500" :
-                                            mood === "triste" ? "#34495e" :
-                                            mood === "endormi" ? "#7DA3C9" :
-                                            mood === "affame" ? "#A0522D" :
+                                            mood === "triste" ? "#87CEEB" :
+                                            mood === "endormi" ? "#9370DB" :
+                                            mood === "affame" ? "#FF6347" :
                                             "#ccc" }
         }
 
-        // Texte central
+        // Texte de l'humeur
         Text {
-            id: moodText
             text: mood.charAt(0).toUpperCase() + mood.slice(1)
             anchors.centerIn: parent
-            font.pixelSize: mood === "affame" ? 28 : 22
+            font.pixelSize: 14
             font.bold: true
             color: "white"
-            opacity: 1
+            style: Text.Outline
+            styleColor: "black"
+        }
+    }
 
-            Behavior on opacity {
-                NumberAnimation { duration: 1000; easing.type: Easing.InOutQuad }
-            }
-
-            // Effet clignotant si endormi
-            SequentialAnimation on opacity {
-                running: mood === "endormi"
-                loops: Animation.Infinite
-                NumberAnimation { to: 0.3; duration: 600 }
-                NumberAnimation { to: 1.0; duration: 600 }
-            }
-
-            // Grossissement si affamé
-            Behavior on font.pixelSize {
-                enabled: mood === "affame"
-                NumberAnimation { duration: 500; easing.type: Easing.InOutQuad }
+    // ✨ Effet SOLEIL pour joyeux
+    Item {
+        id: sunEffect
+        anchors.fill: parent
+        visible: mood === "joyeux"
+        
+        Repeater {
+            model: 8
+            Rectangle {
+                width: 3
+                height: 15
+                color: "#FFD700"
+                radius: 2
+                x: parent.width/2 + Math.cos(index * 45 * Math.PI / 180) * 30 - width/2
+                y: parent.height/2 + Math.sin(index * 45 * Math.PI / 180) * 30 - height/2
+                
+                RotationAnimation on rotation {
+                    from: 0
+                    to: 360
+                    duration: 3000
+                    loops: Animation.Infinite
+                    running: parent.visible
+                }
             }
         }
     }
 
-    // ☀️ Rayons de soleil
-    Repeater {
-        model: mood === "joyeux" ? 12 : 0
-        Rectangle {
-            width: 6; height: 30
-            color: "#FFA500"
-            radius: 3
-            x: root.width / 2 + Math.cos(index * 30 * Math.PI / 180) * 80 - width / 2
-            y: root.height / 2 + Math.sin(index * 30 * Math.PI / 180) * 80 - height / 2
-            RotationAnimator on rotation {
-                from: 0
-                to: 360
-                duration: 4000
-                loops: Animation.Infinite
+    // 🌧️ Effet PLUIE pour triste
+    Item {
+        id: rainEffect
+        anchors.fill: parent
+        visible: mood === "triste"
+        
+        Repeater {
+            model: 6
+            Rectangle {
+                width: 2
+                height: 10
+                color: "#4682B4"
+                x: 20 + index * 25
+                y: 0
+                
+                SequentialAnimation on y {
+                    loops: Animation.Infinite
+                    running: parent.visible
+                    NumberAnimation { to: parent.height + 10; duration: 1000 + index * 100 }
+                    NumberAnimation { to: 0; duration: 0 }
+                }
             }
         }
     }
 
-    // 💧 Gouttes de pluie si triste
-    Repeater {
-        model: mood === "triste" ? 10 : 0
-        Rectangle {
-            width: 4
-            height: 12
-            color: Qt.rgba(0.5, 0.7, 1, 0.7)
-            x: Math.random() * root.width
-            y: 0
-            radius: 2
-            z: 0
-
-            PropertyAnimation {
-                target: parent
-                property: "y"
-                from: 0
-                to: root.height + 30
-                duration: 1000 + Math.random() * 500
-                loops: Animation.Infinite
-                running: true
+    // 💤 Effet BULLES pour endormi
+    Item {
+        id: sleepEffect
+        anchors.fill: parent
+        visible: mood === "endormi"
+        
+        Repeater {
+            model: 4
+            Rectangle {
+                width: 8
+                height: 8
+                color: "transparent"
+                border.color: "#6A5ACD"
+                border.width: 1
+                radius: 4
+                x: 30 + index * 20
+                y: parent.height - 10
+                
+                SequentialAnimation on y {
+                    loops: Animation.Infinite
+                    running: parent.visible
+                    NumberAnimation { to: -10; duration: 2000 + index * 200 }
+                    NumberAnimation { to: parent.height - 10; duration: 0 }
+                }
             }
         }
     }
 
-    // 😴 ZZZ animés si endormi
-    Repeater {
-        model: mood === "endormi" ? 3 : 0
-        Text {
-            text: "Z"
-            color: "blue"
-            font.pixelSize: 20 + index * 4
-            x: root.width - 40 + index * 8
-            y: 10 + index * 10
-            SequentialAnimation on y {
-                loops: Animation.Infinite
-                NumberAnimation { to: y - 20; duration: 1000 }
-                PauseAnimation { duration: 300 }
-                NumberAnimation { to: y; duration: 1000 }
-            }
-        }
-    }
-
-    // 🍗 Cuisses de poulet si affamé
-    Repeater {
-        model: mood === "affame" ? 3 : 0
-        Text {
-            text: "🍗"
-            font.pixelSize: 22
-            x: 10 + index * 20
-            y: root.height
-            SequentialAnimation on y {
-                loops: Animation.Infinite
-                NumberAnimation { to: y - 40; duration: 1500 + index * 100 }
-                PauseAnimation { duration: 200 }
-                NumberAnimation { to: y; duration: 1500 + index * 100 }
+    // 🔥 Effet FEU pour affamé
+    Item {
+        id: fireEffect
+        anchors.fill: parent
+        visible: mood === "affame"
+        
+        Repeater {
+            model: 6
+            Rectangle {
+                width: 4
+                height: 8
+                color: index % 2 === 0 ? "#FF4500" : "#FF6347"
+                x: 25 + index * 20
+                y: parent.height - 5
+                
+                SequentialAnimation on height {
+                    loops: Animation.Infinite
+                    running: parent.visible
+                    NumberAnimation { to: 12; duration: 300 + index * 50 }
+                    NumberAnimation { to: 6; duration: 300 + index * 50 }
+                }
             }
         }
     }
