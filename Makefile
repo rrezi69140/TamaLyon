@@ -14,10 +14,10 @@ EQ            = =
 
 CC            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 CXX           = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
-DEFINES       = -DQT_NO_DEBUG -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_NO_DEBUG -DQT_QUICK_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_QMLMETA_LIB -DQT_QMLMODELS_LIB -DQT_QMLWORKERSCRIPT_LIB -DQT_QML_LIB -DQT_QMLINTEGRATION_LIB -DQT_WEBSOCKETS_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -O2 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -mmacosx-version-min=12 -Wall -Wextra $(DEFINES)
 CXXFLAGS      = -pipe -stdlib=libc++ -O2 -std=gnu++1z $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -mmacosx-version-min=12 -Wall -Wextra $(DEFINES)
-INCPATH       = -I. -I. -I../Qt/6.9.1/macos/lib/QtGui.framework/Headers -I../Qt/6.9.1/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/System/Library/Frameworks/AGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/System/Library/Frameworks/AGL.framework/Headers -I../Qt/6.9.1/macos/mkspecs/macx-clang -F/Users/rachidrezig/Qt/6.9.1/macos/lib
+INCPATH       = -I. -I. -I../Qt/6.9.1/macos/lib/QtQuick.framework/Headers -I../Qt/6.9.1/macos/lib/QtOpenGL.framework/Headers -I../Qt/6.9.1/macos/lib/QtGui.framework/Headers -I../Qt/6.9.1/macos/lib/QtQmlMeta.framework/Headers -I../Qt/6.9.1/macos/lib/QtQmlModels.framework/Headers -I../Qt/6.9.1/macos/lib/QtQmlWorkerScript.framework/Headers -I../Qt/6.9.1/macos/lib/QtQml.framework/Headers -I../Qt/6.9.1/macos/include -I../Qt/6.9.1/macos/include/QtQmlIntegration -I../Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers -I../Qt/6.9.1/macos/lib/QtNetwork.framework/Headers -I../Qt/6.9.1/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/System/Library/Frameworks/AGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/System/Library/Frameworks/AGL.framework/Headers -I../Qt/6.9.1/macos/mkspecs/macx-clang -F/Users/rachidrezig/Qt/6.9.1/macos/lib
 QMAKE         = /Users/rachidrezig/Qt/6.9.1/macos/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -40,7 +40,7 @@ DISTNAME      = TamaLyon1.0.0
 DISTDIR = /Users/rachidrezig/TamaLyon/.tmp/TamaLyon1.0.0
 LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 LFLAGS        = -stdlib=libc++ -headerpad_max_install_names $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -mmacosx-version-min=12 -Wl,-rpath,@executable_path/../Frameworks -Wl,-rpath,/Users/rachidrezig/Qt/6.9.1/macos/lib
-LIBS          = $(SUBLIBS) -F/Users/rachidrezig/Qt/6.9.1/macos/lib -framework QtGui -framework AppKit -framework ImageIO -framework Metal -framework QtCore -framework IOKit -framework DiskArbitration -framework UniformTypeIdentifiers -framework AGL -framework OpenGL   
+LIBS          = $(SUBLIBS) -F/Users/rachidrezig/Qt/6.9.1/macos/lib -framework QtQuick -framework QtOpenGL -framework QtGui -framework AppKit -framework ImageIO -framework Metal -framework QtQmlMeta -framework QtQmlModels -framework QtQmlWorkerScript -framework QtQml -framework QtWebSockets -framework QtNetwork -framework QtCore -framework IOKit -framework DiskArbitration -framework UniformTypeIdentifiers -framework AGL -framework OpenGL   
 AR            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar cq
 RANLIB        = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib -s
 SED           = sed
@@ -52,22 +52,18 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = Lion.cpp \
-		LionManager.cpp \
+SOURCES       = LionManager.cpp \
 		main.cpp \
 		WebSocketClient.cpp \
 		WebSocketServer.cpp qrc_qml.cpp \
-		moc_Lion.cpp \
 		moc_LionManager.cpp \
 		moc_WebSocketClient.cpp \
 		moc_WebSocketServer.cpp
-OBJECTS       = Lion.o \
-		LionManager.o \
+OBJECTS       = LionManager.o \
 		main.o \
 		WebSocketClient.o \
 		WebSocketServer.o \
 		qrc_qml.o \
-		moc_Lion.o \
 		moc_LionManager.o \
 		moc_WebSocketClient.o \
 		moc_WebSocketServer.o
@@ -334,11 +330,9 @@ DIST          = ../Qt/6.9.1/macos/mkspecs/features/spec_pre.prf \
 		../Qt/6.9.1/macos/mkspecs/features/exceptions.prf \
 		../Qt/6.9.1/macos/mkspecs/features/yacc.prf \
 		../Qt/6.9.1/macos/mkspecs/features/lex.prf \
-		TamaLyon.pro Lion.h \
-		LionManager.h \
+		TamaLyon.pro LionManager.h \
 		WebSocketClient.h \
-		WebSocketServer.h Lion.cpp \
-		LionManager.cpp \
+		WebSocketServer.h LionManager.cpp \
 		main.cpp \
 		WebSocketClient.cpp \
 		WebSocketServer.cpp
@@ -631,7 +625,15 @@ Makefile: TamaLyon.pro ../Qt/6.9.1/macos/mkspecs/macx-clang/qmake.conf ../Qt/6.9
 		../Qt/6.9.1/macos/mkspecs/features/lex.prf \
 		TamaLyon.pro \
 		qml.qrc \
+		../Qt/6.9.1/macos/lib/QtQuick.framework/Resources/QtQuick.prl \
+		../Qt/6.9.1/macos/lib/QtOpenGL.framework/Resources/QtOpenGL.prl \
 		../Qt/6.9.1/macos/lib/QtGui.framework/Resources/QtGui.prl \
+		../Qt/6.9.1/macos/lib/QtQmlMeta.framework/Resources/QtQmlMeta.prl \
+		../Qt/6.9.1/macos/lib/QtQmlModels.framework/Resources/QtQmlModels.prl \
+		../Qt/6.9.1/macos/lib/QtQmlWorkerScript.framework/Resources/QtQmlWorkerScript.prl \
+		../Qt/6.9.1/macos/lib/QtQml.framework/Resources/QtQml.prl \
+		../Qt/6.9.1/macos/lib/QtWebSockets.framework/Resources/QtWebSockets.prl \
+		../Qt/6.9.1/macos/lib/QtNetwork.framework/Resources/QtNetwork.prl \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Resources/QtCore.prl
 	$(QMAKE) -o Makefile TamaLyon.pro
 ../Qt/6.9.1/macos/mkspecs/features/spec_pre.prf:
@@ -899,7 +901,15 @@ Makefile: TamaLyon.pro ../Qt/6.9.1/macos/mkspecs/macx-clang/qmake.conf ../Qt/6.9
 ../Qt/6.9.1/macos/mkspecs/features/lex.prf:
 TamaLyon.pro:
 qml.qrc:
+../Qt/6.9.1/macos/lib/QtQuick.framework/Resources/QtQuick.prl:
+../Qt/6.9.1/macos/lib/QtOpenGL.framework/Resources/QtOpenGL.prl:
 ../Qt/6.9.1/macos/lib/QtGui.framework/Resources/QtGui.prl:
+../Qt/6.9.1/macos/lib/QtQmlMeta.framework/Resources/QtQmlMeta.prl:
+../Qt/6.9.1/macos/lib/QtQmlModels.framework/Resources/QtQmlModels.prl:
+../Qt/6.9.1/macos/lib/QtQmlWorkerScript.framework/Resources/QtQmlWorkerScript.prl:
+../Qt/6.9.1/macos/lib/QtQml.framework/Resources/QtQml.prl:
+../Qt/6.9.1/macos/lib/QtWebSockets.framework/Resources/QtWebSockets.prl:
+../Qt/6.9.1/macos/lib/QtNetwork.framework/Resources/QtNetwork.prl:
 ../Qt/6.9.1/macos/lib/QtCore.framework/Resources/QtCore.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile TamaLyon.pro
@@ -926,8 +936,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents qml.qrc $(DISTDIR)/
-	$(COPY_FILE) --parents Lion.h LionManager.h WebSocketClient.h WebSocketServer.h $(DISTDIR)/
-	$(COPY_FILE) --parents Lion.cpp LionManager.cpp main.cpp WebSocketClient.cpp WebSocketServer.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents LionManager.h WebSocketClient.h WebSocketServer.h $(DISTDIR)/
+	$(COPY_FILE) --parents LionManager.cpp main.cpp WebSocketClient.cpp WebSocketServer.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -961,7 +971,7 @@ qrc_qml.cpp: qml.qrc \
 		../Qt/6.9.1/macos/libexec/rcc \
 		Main.qml \
 		DraggableIcon.qml \
-		LyonFAce.qml \
+		LyonFace.qml \
 		MoodBar.qml \
 		FILES/lion_tres_content.png \
 		FILES/lion_affame.png \
@@ -969,21 +979,9 @@ qrc_qml.cpp: qml.qrc \
 		FILES/lion_triste.png
 	/Users/rachidrezig/Qt/6.9.1/macos/libexec/rcc -name qml --no-zstd qml.qrc -o qrc_qml.cpp
 
-compiler_moc_header_make_all: moc_Lion.cpp moc_LionManager.cpp moc_WebSocketClient.cpp moc_WebSocketServer.cpp
+compiler_moc_header_make_all: moc_LionManager.cpp moc_WebSocketClient.cpp moc_WebSocketServer.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_Lion.cpp moc_LionManager.cpp moc_WebSocketClient.cpp moc_WebSocketServer.cpp
-moc_Lion.cpp: Lion.h \
-		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QObject \
-		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qobject.h \
-		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QString \
-		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qstring.h \
-		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QTimer \
-		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qtimer.h \
-		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QJsonObject \
-		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qjsonobject.h \
-		../Qt/6.9.1/macos/libexec/moc
-	/Users/rachidrezig/Qt/6.9.1/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=16 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/rachidrezig/Qt/6.9.1/macos/mkspecs/macx-clang -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtGui.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/16/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/rachidrezig/Qt/6.9.1/macos/lib Lion.h -o moc_Lion.cpp
-
+	-$(DEL_FILE) moc_LionManager.cpp moc_WebSocketClient.cpp moc_WebSocketServer.cpp
 moc_LionManager.cpp: LionManager.h \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QObject \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qobject.h \
@@ -992,21 +990,27 @@ moc_LionManager.cpp: LionManager.h \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QTimer \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qtimer.h \
 		../Qt/6.9.1/macos/libexec/moc
-	/Users/rachidrezig/Qt/6.9.1/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=16 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/rachidrezig/Qt/6.9.1/macos/mkspecs/macx-clang -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtGui.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/16/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/rachidrezig/Qt/6.9.1/macos/lib LionManager.h -o moc_LionManager.cpp
+	/Users/rachidrezig/Qt/6.9.1/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=16 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/rachidrezig/Qt/6.9.1/macos/mkspecs/macx-clang -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQuick.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtOpenGL.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtGui.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlMeta.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlModels.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlWorkerScript.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQml.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/include -I/Users/rachidrezig/Qt/6.9.1/macos/include/QtQmlIntegration -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtNetwork.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/16/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/rachidrezig/Qt/6.9.1/macos/lib LionManager.h -o moc_LionManager.cpp
 
 moc_WebSocketClient.cpp: WebSocketClient.h \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QObject \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qobject.h \
+		../Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers/QWebSocket \
+		../Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers/qwebsocket.h \
 		../Qt/6.9.1/macos/libexec/moc
-	/Users/rachidrezig/Qt/6.9.1/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=16 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/rachidrezig/Qt/6.9.1/macos/mkspecs/macx-clang -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtGui.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/16/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/rachidrezig/Qt/6.9.1/macos/lib WebSocketClient.h -o moc_WebSocketClient.cpp
+	/Users/rachidrezig/Qt/6.9.1/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=16 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/rachidrezig/Qt/6.9.1/macos/mkspecs/macx-clang -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQuick.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtOpenGL.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtGui.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlMeta.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlModels.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlWorkerScript.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQml.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/include -I/Users/rachidrezig/Qt/6.9.1/macos/include/QtQmlIntegration -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtNetwork.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/16/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/rachidrezig/Qt/6.9.1/macos/lib WebSocketClient.h -o moc_WebSocketClient.cpp
 
 moc_WebSocketServer.cpp: WebSocketServer.h \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QObject \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qobject.h \
+		../Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers/QWebSocketServer \
+		../Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers/qwebsocketserver.h \
+		../Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers/QWebSocket \
+		../Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers/qwebsocket.h \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QSet \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qset.h \
 		../Qt/6.9.1/macos/libexec/moc
-	/Users/rachidrezig/Qt/6.9.1/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=16 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/rachidrezig/Qt/6.9.1/macos/mkspecs/macx-clang -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtGui.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/16/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/rachidrezig/Qt/6.9.1/macos/lib WebSocketServer.h -o moc_WebSocketServer.cpp
+	/Users/rachidrezig/Qt/6.9.1/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=16 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/rachidrezig/Qt/6.9.1/macos/mkspecs/macx-clang -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQuick.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtOpenGL.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtGui.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlMeta.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlModels.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlWorkerScript.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQml.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/include -I/Users/rachidrezig/Qt/6.9.1/macos/include/QtQmlIntegration -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtNetwork.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/16/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/rachidrezig/Qt/6.9.1/macos/lib WebSocketServer.h -o moc_WebSocketServer.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1024,23 +1028,6 @@ compiler_clean: compiler_rcc_clean compiler_moc_header_clean
 
 ####### Compile
 
-Lion.o: Lion.cpp Lion.h \
-		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QObject \
-		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qobject.h \
-		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QString \
-		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qstring.h \
-		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QTimer \
-		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qtimer.h \
-		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QJsonObject \
-		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qjsonobject.h \
-		WebSocketServer.h \
-		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QSet \
-		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qset.h \
-		WebSocketClient.h \
-		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QDebug \
-		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qdebug.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Lion.o Lion.cpp
-
 LionManager.o: LionManager.cpp LionManager.h \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QObject \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qobject.h \
@@ -1054,18 +1041,19 @@ LionManager.o: LionManager.cpp LionManager.h \
 
 main.o: main.cpp ../Qt/6.9.1/macos/lib/QtGui.framework/Headers/QGuiApplication \
 		../Qt/6.9.1/macos/lib/QtGui.framework/Headers/qguiapplication.h \
+		../Qt/6.9.1/macos/lib/QtQml.framework/Headers/QQmlApplicationEngine \
+		../Qt/6.9.1/macos/lib/QtQml.framework/Headers/qqmlapplicationengine.h \
+		../Qt/6.9.1/macos/lib/QtQml.framework/Headers/QQmlContext \
+		../Qt/6.9.1/macos/lib/QtQml.framework/Headers/qqmlcontext.h \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QDebug \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qdebug.h \
-		Lion.h \
+		WebSocketServer.h \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QObject \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qobject.h \
-		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QString \
-		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qstring.h \
-		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QTimer \
-		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qtimer.h \
-		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QJsonObject \
-		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qjsonobject.h \
-		WebSocketServer.h \
+		../Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers/QWebSocketServer \
+		../Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers/qwebsocketserver.h \
+		../Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers/QWebSocket \
+		../Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers/qwebsocket.h \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QSet \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qset.h \
 		WebSocketClient.h
@@ -1074,6 +1062,8 @@ main.o: main.cpp ../Qt/6.9.1/macos/lib/QtGui.framework/Headers/QGuiApplication \
 WebSocketClient.o: WebSocketClient.cpp WebSocketClient.h \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QObject \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qobject.h \
+		../Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers/QWebSocket \
+		../Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers/qwebsocket.h \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QJsonDocument \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qjsondocument.h \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QJsonObject \
@@ -1085,6 +1075,10 @@ WebSocketClient.o: WebSocketClient.cpp WebSocketClient.h \
 WebSocketServer.o: WebSocketServer.cpp WebSocketServer.h \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QObject \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qobject.h \
+		../Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers/QWebSocketServer \
+		../Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers/qwebsocketserver.h \
+		../Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers/QWebSocket \
+		../Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers/qwebsocket.h \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QSet \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qset.h \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QDebug \
@@ -1097,9 +1091,6 @@ WebSocketServer.o: WebSocketServer.cpp WebSocketServer.h \
 
 qrc_qml.o: qrc_qml.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_qml.o qrc_qml.cpp
-
-moc_Lion.o: moc_Lion.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_Lion.o moc_Lion.cpp
 
 moc_LionManager.o: moc_LionManager.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_LionManager.o moc_LionManager.cpp

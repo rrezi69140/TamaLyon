@@ -4,8 +4,8 @@ import QtQuick 2.15
 Item {
     id: root
     property string mood: "joyeux"
-    width: 200
-    height: 50
+    width: 350
+    height: 80
 
     // Nettoyage des effets quand l'humeur change
     onMoodChanged: {
@@ -30,37 +30,182 @@ Item {
         }
     }
 
-    // Barre d'humeur compacte
+    // Barre d'humeur compacte avec stats
     Rectangle {
         id: moodBackground
         anchors.centerIn: parent
         width: parent.width
         height: parent.height
-        radius: height / 2
+        radius: 10
         z: 1
+        color: "#2C3E50"
+        border.color: "#34495E"
+        border.width: 2
 
-        gradient: Gradient {
-            GradientStop { position: 0.0; color: mood === "joyeux" ? "#FFD700" :
-                                            mood === "triste" ? "#4682B4" :
-                                            mood === "endormi" ? "#6A5ACD" :
-                                            mood === "affame" ? "#DC143C" :
-                                            "#aaa" }
-            GradientStop { position: 1.0; color: mood === "joyeux" ? "#FFA500" :
-                                            mood === "triste" ? "#87CEEB" :
-                                            mood === "endormi" ? "#9370DB" :
-                                            mood === "affame" ? "#FF6347" :
-                                            "#ccc" }
-        }
-
-        // Texte de l'humeur
+        // Titre de l'humeur
         Text {
             text: mood.charAt(0).toUpperCase() + mood.slice(1)
-            anchors.centerIn: parent
-            font.pixelSize: 14
+            anchors.top: parent.top
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.topMargin: 5
+            font.pixelSize: 12
             font.bold: true
             color: "white"
-            style: Text.Outline
-            styleColor: "black"
+        }
+
+        // Barres de stats
+        Row {
+            anchors.centerIn: parent
+            spacing: 15
+            
+            // Barre de faim
+            Column {
+                spacing: 2
+                Text {
+                    text: "🍖"
+                    font.pixelSize: 16
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+                Rectangle {
+                    width: 60
+                    height: 8
+                    radius: 4
+                    color: "#34495E"
+                    Rectangle {
+                        width: parent.width * (lionManager.hunger / 100)
+                        height: parent.height
+                        radius: 4
+                        color: lionManager.hunger > 60 ? "#27AE60" : 
+                               lionManager.hunger > 30 ? "#F39C12" : "#E74C3C"
+                        
+                        Behavior on width {
+                            NumberAnimation { duration: 500; easing.type: Easing.OutQuad }
+                        }
+                    }
+                }
+                Text {
+                    text: Math.round(lionManager.hunger) + "%"
+                    font.pixelSize: 9
+                    color: "white"
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+            }
+            
+            // Barre de soif
+            Column {
+                spacing: 2
+                Text {
+                    text: "💧"
+                    font.pixelSize: 16
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+                Rectangle {
+                    width: 60
+                    height: 8
+                    radius: 4
+                    color: "#34495E"
+                    Rectangle {
+                        width: parent.width * (lionManager.thirst / 100)
+                        height: parent.height
+                        radius: 4
+                        color: lionManager.thirst > 60 ? "#3498DB" : 
+                               lionManager.thirst > 30 ? "#F39C12" : "#E74C3C"
+                        
+                        Behavior on width {
+                            NumberAnimation { duration: 500; easing.type: Easing.OutQuad }
+                        }
+                    }
+                }
+                Text {
+                    text: Math.round(lionManager.thirst) + "%"
+                    font.pixelSize: 9
+                    color: "white"
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+            }
+            
+            // Barre d'affection
+            Column {
+                spacing: 2
+                Text {
+                    text: "💖"
+                    font.pixelSize: 16
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+                Rectangle {
+                    width: 60
+                    height: 8
+                    radius: 4
+                    color: "#34495E"
+                    Rectangle {
+                        width: parent.width * (lionManager.affection / 100)
+                        height: parent.height
+                        radius: 4
+                        color: lionManager.affection > 60 ? "#E91E63" : 
+                               lionManager.affection > 30 ? "#F39C12" : "#E74C3C"
+                        
+                        Behavior on width {
+                            NumberAnimation { duration: 500; easing.type: Easing.OutQuad }
+                        }
+                    }
+                }
+                Text {
+                    text: Math.round(lionManager.affection) + "%"
+                    font.pixelSize: 9
+                    color: "white"
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+            }
+            
+            // Barre d'énergie
+            Column {
+                spacing: 2
+                Text {
+                    text: "⚡"
+                    font.pixelSize: 16
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+                Rectangle {
+                    width: 60
+                    height: 8
+                    radius: 4
+                    color: "#34495E"
+                    Rectangle {
+                        width: parent.width * (lionManager.energy / 100)
+                        height: parent.height
+                        radius: 4
+                        color: lionManager.energy > 60 ? "#9B59B6" : 
+                               lionManager.energy > 30 ? "#F39C12" : "#E74C3C"
+                        
+                        Behavior on width {
+                            NumberAnimation { duration: 500; easing.type: Easing.OutQuad }
+                        }
+                    }
+                }
+                Text {
+                    text: Math.round(lionManager.energy) + "%"
+                    font.pixelSize: 9
+                    color: "white"
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+            }
+        }
+        
+        // Conseil utile
+        Text {
+            text: {
+                if (lionManager.hunger < 30) return "💡 Nourrir le lion"
+                if (lionManager.thirst < 30) return "💡 Hydrater le lion"
+                if (lionManager.affection < 30) return "💡 Caresser le lion"
+                if (lionManager.energy < 30) return "💡 Laisser dormir"
+                return "💡 Tout va bien!"
+            }
+            anchors.bottom: parent.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottomMargin: 3
+            font.pixelSize: 10
+            color: "white"
+            font.bold: true
         }
     }
 

@@ -5,27 +5,17 @@ Item {
     width: 600
     height: 750
 
-    // MoodBar au-dessus du lion
-    MoodBar {
-        mood: lionManager.mood
-        anchors.top: parent.top
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.topMargin: 20
-        z: 10
-    }
-
     Image {
         id: lionImage
         anchors.fill: parent
-        anchors.topMargin: 80  // Espace pour la MoodBar
         fillMode: Image.PreserveAspectFit
 
         source: {
-            if (lionManager.mood === "joyeux") return "qrc:/FILES/lion_tres_content.png";
-            if (lionManager.mood === "triste") return "qrc:/FILES/lion_triste.png";
-            if (lionManager.mood === "endormi") return "qrc:/FILES/lion_endormi.png";
-            if (lionManager.mood === "affame") return "qrc:/FILES/lion_affame.png";
-            return "qrc:/FILES/lion_tres_content.png";
+            if (lionManager.mood === "joyeux") return "qrc:/Images/FILES/lion_tres_content.png";
+            if (lionManager.mood === "triste") return "qrc:/Images/FILES/lion_triste.png";
+            if (lionManager.mood === "endormi") return "qrc:/Images/FILES/lion_endormi.png";
+            if (lionManager.mood === "affame") return "qrc:/Images/FILES/lion_affame.png";
+            return "qrc:/Images/FILES/lion_tres_content.png";
         }
 
         // Animation de respiration quand il dort
@@ -55,27 +45,7 @@ Item {
         }
     }
 
-    // Indicateur d'état
-    Text {
-        text: {
-            if (lionManager.mood === "endormi") return "😴 Le lion dort..."
-            if (lionManager.mood === "affame") return "😋 Le lion a faim/soif!"
-            if (lionManager.mood === "triste") return "😢 Le lion a besoin d'attention"
-            return "😊 Le lion va bien"
-        }
-        font.pixelSize: 16
-        font.bold: true
-        color: {
-            if (lionManager.mood === "endormi") return "blue"
-            if (lionManager.mood === "affame") return "red"
-            if (lionManager.mood === "triste") return "orange"
-            return "green"
-        }
-        anchors.bottom: parent.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.margins: 10
-        z: 5
-    }
+
 
     DropArea {
         anchors.fill: lionImage
@@ -95,13 +65,13 @@ Item {
             
             if (action === "feed") {
                 console.log("[DROP] Nourrir le lion")
-                lionManager.feed(2)
+                lionManager.feed(10)
             } else if (action === "water") {
                 console.log("[DROP] Donner à boire au lion")
-                lionManager.water(2)
+                lionManager.water(10)
             } else if (action === "pet") {
                 console.log("[DROP] Caresser le lion")
-                lionManager.pet(3)
+                lionManager.pet(10)
             }
             
             // Marquer l'icône source comme indisponible
