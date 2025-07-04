@@ -11,8 +11,8 @@ qt_standard_project_setup(REQUIRES 6.8)
 
 qt_add_executable(appTAMALYON
     main.cpp
-    Lion.cpp
-    Lion.h
+    LionManager.cpp
+    LionManager.h
     WebSocketServer.cpp
     WebSocketServer.h
     WebSocketClient.cpp

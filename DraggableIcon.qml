@@ -81,16 +81,24 @@ Item {
                 // Simuler un drop réussi si on détecte qu'on est dans la zone
                 if (dragProxy.Drag.target) {
                     console.log("[DRAG] ✅ Drop détecté manuellement!")
-                    // Déclencher l'action directement
-                    if (root.type === "feed") {
-                        console.log("[DROP] Nourrir le lion")
-                        lionManager.feed(10)
-                    } else if (root.type === "water") {
-                        console.log("[DROP] Donner à boire au lion")
-                        lionManager.water(10)
-                    } else if (root.type === "pet") {
-                        console.log("[DROP] Caresser le lion")
-                        lionManager.pet(10)
+                    
+                    // Si on est en mode client, envoyer la commande au serveur
+                    if (!lionManager.isHostMode()) {
+                        console.log("[CLIENT] Envoi de la commande au serveur:", root.type)
+                        lionManager.sendCommand(root.type)
+                    } else {
+                        // Si on est hôte, exécuter directement
+                        console.log("[HOST] Exécution directe de l'action:", root.type)
+                        if (root.type === "feed") {
+                            console.log("[DROP] Nourrir le lion")
+                            lionManager.feed(10)
+                        } else if (root.type === "water") {
+                            console.log("[DROP] Donner à boire au lion")
+                            lionManager.water(10)
+                        } else if (root.type === "pet") {
+                            console.log("[DROP] Caresser le lion")
+                            lionManager.pet(10)
+                        }
                     }
                     
                     // Marquer comme utilisé

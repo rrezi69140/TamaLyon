@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QString>
 #include <QTimer>
+#include "WebSocketServer.h"
+#include "WebSocketClient.h"
 
 class LionManager : public QObject {
     Q_OBJECT
@@ -32,6 +34,8 @@ public:
     Q_INVOKABLE void water(int points);
     Q_INVOKABLE void startAsHost();
     Q_INVOKABLE void joinAsClient();
+    Q_INVOKABLE void sendCommand(const QString &command);
+    Q_INVOKABLE bool isHostMode() const;
 
     QString generateStateMessage() const;
 
@@ -55,8 +59,18 @@ private:
     int affection;
     int energy;
     QTimer decayTimer;
+    
+    // WebSocket components
+    WebSocketServer *server;
+    WebSocketClient *client;
+    bool isHost;
 
     void updateMood();
+    void broadcastState();
+
+private slots:
+    void onCommandReceived(const QString &command);
+    void onStateReceived(const QJsonObject &state);
 };
 
 #endif // LIONMANAGER_H
