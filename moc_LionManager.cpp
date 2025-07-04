@@ -49,6 +49,9 @@ template <> constexpr inline auto LionManager::qt_create_metaobjectdata<qt_meta_
         "stateUpdated",
         "state",
         "decayStates",
+        "onCommandReceived",
+        "command",
+        "onStateReceived",
         "feed",
         "points",
         "giveWater",
@@ -56,6 +59,8 @@ template <> constexpr inline auto LionManager::qt_create_metaobjectdata<qt_meta_
         "water",
         "startAsHost",
         "joinAsClient",
+        "sendCommand",
+        "isHostMode",
         "mood",
         "hunger",
         "thirst",
@@ -83,40 +88,54 @@ template <> constexpr inline auto LionManager::qt_create_metaobjectdata<qt_meta_
         }}),
         // Slot 'decayStates'
         QtMocHelpers::SlotData<void()>(10, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onCommandReceived'
+        QtMocHelpers::SlotData<void(const QString &)>(11, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 12 },
+        }}),
+        // Slot 'onStateReceived'
+        QtMocHelpers::SlotData<void(const QJsonObject &)>(13, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QJsonObject, 9 },
+        }}),
         // Method 'feed'
-        QtMocHelpers::MethodData<void(int)>(11, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Int, 12 },
+        QtMocHelpers::MethodData<void(int)>(14, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Int, 15 },
         }}),
         // Method 'giveWater'
-        QtMocHelpers::MethodData<void(int)>(13, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Int, 12 },
+        QtMocHelpers::MethodData<void(int)>(16, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Int, 15 },
         }}),
         // Method 'pet'
-        QtMocHelpers::MethodData<void(int)>(14, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Int, 12 },
+        QtMocHelpers::MethodData<void(int)>(17, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Int, 15 },
         }}),
         // Method 'water'
-        QtMocHelpers::MethodData<void(int)>(15, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Int, 12 },
+        QtMocHelpers::MethodData<void(int)>(18, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Int, 15 },
         }}),
         // Method 'startAsHost'
-        QtMocHelpers::MethodData<void()>(16, 2, QMC::AccessPublic, QMetaType::Void),
+        QtMocHelpers::MethodData<void()>(19, 2, QMC::AccessPublic, QMetaType::Void),
         // Method 'joinAsClient'
-        QtMocHelpers::MethodData<void()>(17, 2, QMC::AccessPublic, QMetaType::Void),
+        QtMocHelpers::MethodData<void()>(20, 2, QMC::AccessPublic, QMetaType::Void),
+        // Method 'sendCommand'
+        QtMocHelpers::MethodData<void(const QString &)>(21, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 12 },
+        }}),
+        // Method 'isHostMode'
+        QtMocHelpers::MethodData<bool() const>(22, 2, QMC::AccessPublic, QMetaType::Bool),
     };
     QtMocHelpers::UintData qt_properties {
         // property 'mood'
-        QtMocHelpers::PropertyData<QString>(18, QMetaType::QString, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 0),
+        QtMocHelpers::PropertyData<QString>(23, QMetaType::QString, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 0),
         // property 'hunger'
-        QtMocHelpers::PropertyData<int>(19, QMetaType::Int, QMC::DefaultPropertyFlags, 1),
+        QtMocHelpers::PropertyData<int>(24, QMetaType::Int, QMC::DefaultPropertyFlags, 1),
         // property 'thirst'
-        QtMocHelpers::PropertyData<int>(20, QMetaType::Int, QMC::DefaultPropertyFlags, 2),
+        QtMocHelpers::PropertyData<int>(25, QMetaType::Int, QMC::DefaultPropertyFlags, 2),
         // property 'affection'
-        QtMocHelpers::PropertyData<int>(21, QMetaType::Int, QMC::DefaultPropertyFlags, 3),
+        QtMocHelpers::PropertyData<int>(26, QMetaType::Int, QMC::DefaultPropertyFlags, 3),
         // property 'energy'
-        QtMocHelpers::PropertyData<int>(22, QMetaType::Int, QMC::DefaultPropertyFlags, 4),
+        QtMocHelpers::PropertyData<int>(27, QMetaType::Int, QMC::DefaultPropertyFlags, 4),
         // property 'connectionStatus'
-        QtMocHelpers::PropertyData<QString>(23, QMetaType::QString, QMC::DefaultPropertyFlags, 5),
+        QtMocHelpers::PropertyData<QString>(28, QMetaType::QString, QMC::DefaultPropertyFlags, 5),
     };
     QtMocHelpers::UintData qt_enums {
     };
@@ -146,12 +165,17 @@ void LionManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 5: _t->connectionStatusChanged(); break;
         case 6: _t->stateUpdated((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 7: _t->decayStates(); break;
-        case 8: _t->feed((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 9: _t->giveWater((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 10: _t->pet((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 11: _t->water((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 12: _t->startAsHost(); break;
-        case 13: _t->joinAsClient(); break;
+        case 8: _t->onCommandReceived((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 9: _t->onStateReceived((*reinterpret_cast< std::add_pointer_t<QJsonObject>>(_a[1]))); break;
+        case 10: _t->feed((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 11: _t->giveWater((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 12: _t->pet((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 13: _t->water((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 14: _t->startAsHost(); break;
+        case 15: _t->joinAsClient(); break;
+        case 16: _t->sendCommand((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 17: { bool _r = _t->isHostMode();
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
     }
@@ -211,14 +235,14 @@ int LionManager::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 14)
+        if (_id < 18)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 14;
+        _id -= 18;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 14)
+        if (_id < 18)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 14;
+        _id -= 18;
     }
     if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
             || _c == QMetaObject::ResetProperty || _c == QMetaObject::BindableProperty

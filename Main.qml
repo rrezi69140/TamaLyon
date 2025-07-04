@@ -30,6 +30,7 @@ Window {
                 text: "Statut: " + lionManager.connectionStatus
                 font.pixelSize: 16
                 Layout.alignment: Qt.AlignHCenter
+                color: lionManager.connectionStatus.includes("actif") || lionManager.connectionStatus.includes("Connecté") ? "green" : "black"
             }
         }
 
