@@ -3,7 +3,7 @@
 #include <QQmlContext>
 #include <QDebug>
 
-#include "Lion.h"
+#include "LionManager.h"
 #include "WebSocketServer.h"
 #include "WebSocketClient.h"
 

@@ -84,13 +84,13 @@ Item {
                     // Déclencher l'action directement
                     if (root.type === "feed") {
                         console.log("[DROP] Nourrir le lion")
-                        lionManager.feed(2)
+                        lionManager.feed(10)
                     } else if (root.type === "water") {
                         console.log("[DROP] Donner à boire au lion")
-                        lionManager.water(2)
+                        lionManager.water(10)
                     } else if (root.type === "pet") {
                         console.log("[DROP] Caresser le lion")
-                        lionManager.pet(3)
+                        lionManager.pet(10)
                     }
                     
                     // Marquer comme utilisé
