@@ -9,14 +9,6 @@ Item {
     width: 50
     height: 50
     opacity: available ? 1.0 : 0.3
-
-    Drag.active: mouseArea.drag.active
-    Drag.hotSpot.x: 25
-    Drag.hotSpot.y: 25
-    // Supprimer les clés pour simplifier
-    Drag.mimeData: {
-        "text/plain": type
-    }
     
     // Propriété pour suivre si on est en train de draguer
     property bool isDragging: false
@@ -66,13 +58,14 @@ Item {
     MouseArea {
         id: mouseArea
         anchors.fill: parent
-        drag.target: available ? root : null
+        drag.target: available ? dragProxy : null
         enabled: available
 
         onPressed: {
             if (available) {
                 console.log("[DRAG] Début du drag:", root.type, "- disponible:", available)
-                root.z = 1000  // Mettre au premier plan
+                dragProxy.x = 0
+                dragProxy.y = 0
                 root.isDragging = true
             }
         }
@@ -82,17 +75,11 @@ Item {
             
             if (root.isDragging) {
                 // Vérifier si l'icône est au-dessus de la zone de drop
-                let globalPos = root.mapToItem(null, root.width/2, root.height/2)
+                let globalPos = dragProxy.mapToItem(null, dragProxy.width/2, dragProxy.height/2)
                 console.log("[DRAG] Position globale au relâchement:", globalPos.x, globalPos.y)
                 
-                // Essayer de trouver le LyonFace et vérifier si on est dessus
-                let parentWindow = root.parent
-                while (parentWindow && !parentWindow.objectName) {
-                    parentWindow = parentWindow.parent
-                }
-                
                 // Simuler un drop réussi si on détecte qu'on est dans la zone
-                if (root.Drag.target) {
+                if (dragProxy.Drag.target) {
                     console.log("[DRAG] ✅ Drop détecté manuellement!")
                     // Déclencher l'action directement
                     if (root.type === "feed") {
@@ -115,21 +102,34 @@ Item {
             
             root.isDragging = false
             
-            // Retarder le retour à la position d'origine pour laisser le temps au drop de se faire
-            returnToPositionTimer.start()
-            
-            // Retarder la remise à zéro du z-index pour permettre au drop de se terminer
-            resetZTimer.start()
+            // Remettre le proxy à sa position d'origine
+            dragProxy.x = 0
+            dragProxy.y = 0
         }
     }
 
-    Timer {
-        id: returnToPositionTimer
-        interval: 500  // Attendre 500ms avant de remettre l'icône à sa position
-        onTriggered: {
-            console.log("[DRAG] Retour à la position d'origine pour:", root.type)
-            root.x = 0
-            root.y = 0
+    // Proxy invisible pour le drag qui ne perturbe pas le layout
+    Rectangle {
+        id: dragProxy
+        width: root.width
+        height: root.height
+        color: "transparent"
+        border.color: "blue"
+        border.width: 2
+        visible: root.isDragging
+        z: 1000
+        
+        Drag.active: mouseArea.drag.active
+        Drag.hotSpot.x: 25
+        Drag.hotSpot.y: 25
+        Drag.mimeData: {
+            "text/plain": root.type
+        }
+        
+        Text {
+            text: root.emoji
+            font.pixelSize: 30
+            anchors.centerIn: parent
         }
     }
 
