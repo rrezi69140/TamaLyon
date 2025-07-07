@@ -17,15 +17,29 @@ qt_add_executable(appTAMALYON
     WebSocketServer.h
     WebSocketClient.cpp
     WebSocketClient.h
+    Aliment.cpp
+    Aliment.h
+    Animal.cpp
+    Animal.h
+    Lion.cpp
+    Lion.h
+    AlimentsConcrets.cpp
+    AlimentsConcrets.h
+    AlimentManager.cpp
+    AlimentManager.h
+    EffectHandler.cpp
+    EffectHandler.h
 )
 
 qt_add_resources(appTAMALYON "qml"
     PREFIX "/"
     FILES
         Main.qml
+        MainOOP.qml
         MainSimple.qml
         LyonFace.qml
         DraggableIcon.qml
+        DraggableAliment.qml
         MoodBar.qml
         FILES/lion_affame.png
         FILES/lion_endormi.png

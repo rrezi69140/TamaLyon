@@ -6,6 +6,8 @@
 #include "LionManager.h"
 #include "WebSocketServer.h"
 #include "WebSocketClient.h"
+#include "Lion.h"
+#include "AlimentManager.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,12 +15,19 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
+    // Créer les instances principales
     LionManager lionManager;
+    Lion lion("Simba");
+    AlimentManager alimentManager;
 
     // Exposer les classes au QML
     engine.rootContext()->setContextProperty("lionManager", &lionManager);
+    engine.rootContext()->setContextProperty("lion", &lion);
+    engine.rootContext()->setContextProperty("alimentManager", &alimentManager);
 
-    const QUrl url(u"qrc:/Main.qml"_qs);
+    qDebug() << "[main] 🚀 TamaLyon démarré avec la nouvelle architecture OOP";
+
+    const QUrl url(QStringLiteral("qrc:/MainOOP.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
                          if (!obj && objUrl == url)

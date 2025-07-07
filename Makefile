@@ -55,18 +55,42 @@ OBJECTS_DIR   = ./
 SOURCES       = LionManager.cpp \
 		main.cpp \
 		WebSocketClient.cpp \
-		WebSocketServer.cpp qrc_qml.cpp \
+		WebSocketServer.cpp \
+		Aliment.cpp \
+		AlimentsConcrets.cpp \
+		Animal.cpp \
+		Lion.cpp \
+		EffectHandler.cpp \
+		AlimentManager.cpp qrc_qml.cpp \
 		moc_LionManager.cpp \
 		moc_WebSocketClient.cpp \
-		moc_WebSocketServer.cpp
+		moc_WebSocketServer.cpp \
+		moc_Aliment.cpp \
+		moc_AlimentsConcrets.cpp \
+		moc_Animal.cpp \
+		moc_Lion.cpp \
+		moc_EffectHandler.cpp \
+		moc_AlimentManager.cpp
 OBJECTS       = LionManager.o \
 		main.o \
 		WebSocketClient.o \
 		WebSocketServer.o \
+		Aliment.o \
+		AlimentsConcrets.o \
+		Animal.o \
+		Lion.o \
+		EffectHandler.o \
+		AlimentManager.o \
 		qrc_qml.o \
 		moc_LionManager.o \
 		moc_WebSocketClient.o \
-		moc_WebSocketServer.o
+		moc_WebSocketServer.o \
+		moc_Aliment.o \
+		moc_AlimentsConcrets.o \
+		moc_Animal.o \
+		moc_Lion.o \
+		moc_EffectHandler.o \
+		moc_AlimentManager.o
 DIST          = ../Qt/6.9.1/macos/mkspecs/features/spec_pre.prf \
 		../Qt/6.9.1/macos/mkspecs/features/device_config.prf \
 		../Qt/6.9.1/macos/mkspecs/common/unix.conf \
@@ -332,10 +356,22 @@ DIST          = ../Qt/6.9.1/macos/mkspecs/features/spec_pre.prf \
 		../Qt/6.9.1/macos/mkspecs/features/lex.prf \
 		TamaLyon.pro LionManager.h \
 		WebSocketClient.h \
-		WebSocketServer.h LionManager.cpp \
+		WebSocketServer.h \
+		Aliment.h \
+		AlimentsConcrets.h \
+		Animal.h \
+		Lion.h \
+		EffectHandler.h \
+		AlimentManager.h LionManager.cpp \
 		main.cpp \
 		WebSocketClient.cpp \
-		WebSocketServer.cpp
+		WebSocketServer.cpp \
+		Aliment.cpp \
+		AlimentsConcrets.cpp \
+		Animal.cpp \
+		Lion.cpp \
+		EffectHandler.cpp \
+		AlimentManager.cpp
 QMAKE_TARGET  = TamaLyon
 DESTDIR       = 
 TARGET        = TamaLyon.app/Contents/MacOS/TamaLyon
@@ -936,8 +972,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents qml.qrc $(DISTDIR)/
-	$(COPY_FILE) --parents LionManager.h WebSocketClient.h WebSocketServer.h $(DISTDIR)/
-	$(COPY_FILE) --parents LionManager.cpp main.cpp WebSocketClient.cpp WebSocketServer.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents LionManager.h WebSocketClient.h WebSocketServer.h Aliment.h AlimentsConcrets.h Animal.h Lion.h EffectHandler.h AlimentManager.h $(DISTDIR)/
+	$(COPY_FILE) --parents LionManager.cpp main.cpp WebSocketClient.cpp WebSocketServer.cpp Aliment.cpp AlimentsConcrets.cpp Animal.cpp Lion.cpp EffectHandler.cpp AlimentManager.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -969,9 +1005,12 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_qml.cpp
 qrc_qml.cpp: qml.qrc \
 		../Qt/6.9.1/macos/libexec/rcc \
+		MainSimple.qml \
 		Main.qml \
 		DraggableIcon.qml \
 		LyonFace.qml \
+		MainOOP.qml \
+		DraggableAliment.qml \
 		MoodBar.qml \
 		FILES/lion_tres_content.png \
 		FILES/lion_affame.png \
@@ -979,9 +1018,9 @@ qrc_qml.cpp: qml.qrc \
 		FILES/lion_triste.png
 	/Users/rachidrezig/Qt/6.9.1/macos/libexec/rcc -name qml --no-zstd qml.qrc -o qrc_qml.cpp
 
-compiler_moc_header_make_all: moc_LionManager.cpp moc_WebSocketClient.cpp moc_WebSocketServer.cpp
+compiler_moc_header_make_all: moc_LionManager.cpp moc_WebSocketClient.cpp moc_WebSocketServer.cpp moc_Aliment.cpp moc_AlimentsConcrets.cpp moc_Animal.cpp moc_Lion.cpp moc_EffectHandler.cpp moc_AlimentManager.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_LionManager.cpp moc_WebSocketClient.cpp moc_WebSocketServer.cpp
+	-$(DEL_FILE) moc_LionManager.cpp moc_WebSocketClient.cpp moc_WebSocketServer.cpp moc_Aliment.cpp moc_AlimentsConcrets.cpp moc_Animal.cpp moc_Lion.cpp moc_EffectHandler.cpp moc_AlimentManager.cpp
 moc_LionManager.cpp: LionManager.h \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QObject \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qobject.h \
@@ -989,6 +1028,14 @@ moc_LionManager.cpp: LionManager.h \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qstring.h \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QTimer \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qtimer.h \
+		WebSocketServer.h \
+		../Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers/QWebSocketServer \
+		../Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers/qwebsocketserver.h \
+		../Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers/QWebSocket \
+		../Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers/qwebsocket.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QSet \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qset.h \
+		WebSocketClient.h \
 		../Qt/6.9.1/macos/libexec/moc
 	/Users/rachidrezig/Qt/6.9.1/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=16 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/rachidrezig/Qt/6.9.1/macos/mkspecs/macx-clang -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQuick.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtOpenGL.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtGui.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlMeta.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlModels.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlWorkerScript.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQml.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/include -I/Users/rachidrezig/Qt/6.9.1/macos/include/QtQmlIntegration -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtNetwork.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/16/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/rachidrezig/Qt/6.9.1/macos/lib LionManager.h -o moc_LionManager.cpp
 
@@ -1011,6 +1058,69 @@ moc_WebSocketServer.cpp: WebSocketServer.h \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qset.h \
 		../Qt/6.9.1/macos/libexec/moc
 	/Users/rachidrezig/Qt/6.9.1/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=16 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/rachidrezig/Qt/6.9.1/macos/mkspecs/macx-clang -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQuick.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtOpenGL.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtGui.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlMeta.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlModels.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlWorkerScript.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQml.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/include -I/Users/rachidrezig/Qt/6.9.1/macos/include/QtQmlIntegration -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtNetwork.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/16/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/rachidrezig/Qt/6.9.1/macos/lib WebSocketServer.h -o moc_WebSocketServer.cpp
+
+moc_Aliment.cpp: Aliment.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QObject \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qobject.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QString \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qstring.h \
+		../Qt/6.9.1/macos/libexec/moc
+	/Users/rachidrezig/Qt/6.9.1/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=16 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/rachidrezig/Qt/6.9.1/macos/mkspecs/macx-clang -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQuick.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtOpenGL.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtGui.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlMeta.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlModels.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlWorkerScript.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQml.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/include -I/Users/rachidrezig/Qt/6.9.1/macos/include/QtQmlIntegration -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtNetwork.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/16/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/rachidrezig/Qt/6.9.1/macos/lib Aliment.h -o moc_Aliment.cpp
+
+moc_AlimentsConcrets.cpp: AlimentsConcrets.h \
+		Aliment.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QObject \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qobject.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QString \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qstring.h \
+		../Qt/6.9.1/macos/libexec/moc
+	/Users/rachidrezig/Qt/6.9.1/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=16 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/rachidrezig/Qt/6.9.1/macos/mkspecs/macx-clang -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQuick.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtOpenGL.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtGui.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlMeta.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlModels.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlWorkerScript.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQml.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/include -I/Users/rachidrezig/Qt/6.9.1/macos/include/QtQmlIntegration -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtNetwork.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/16/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/rachidrezig/Qt/6.9.1/macos/lib AlimentsConcrets.h -o moc_AlimentsConcrets.cpp
+
+moc_Animal.cpp: Animal.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QObject \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qobject.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QString \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qstring.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QTimer \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qtimer.h \
+		Aliment.h \
+		../Qt/6.9.1/macos/libexec/moc
+	/Users/rachidrezig/Qt/6.9.1/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=16 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/rachidrezig/Qt/6.9.1/macos/mkspecs/macx-clang -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQuick.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtOpenGL.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtGui.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlMeta.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlModels.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlWorkerScript.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQml.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/include -I/Users/rachidrezig/Qt/6.9.1/macos/include/QtQmlIntegration -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtNetwork.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/16/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/rachidrezig/Qt/6.9.1/macos/lib Animal.h -o moc_Animal.cpp
+
+moc_Lion.cpp: Lion.h \
+		Animal.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QObject \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qobject.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QString \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qstring.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QTimer \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qtimer.h \
+		Aliment.h \
+		../Qt/6.9.1/macos/libexec/moc
+	/Users/rachidrezig/Qt/6.9.1/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=16 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/rachidrezig/Qt/6.9.1/macos/mkspecs/macx-clang -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQuick.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtOpenGL.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtGui.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlMeta.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlModels.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlWorkerScript.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQml.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/include -I/Users/rachidrezig/Qt/6.9.1/macos/include/QtQmlIntegration -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtNetwork.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/16/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/rachidrezig/Qt/6.9.1/macos/lib Lion.h -o moc_Lion.cpp
+
+moc_EffectHandler.cpp: EffectHandler.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QObject \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qobject.h \
+		Aliment.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QString \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qstring.h \
+		../Qt/6.9.1/macos/libexec/moc
+	/Users/rachidrezig/Qt/6.9.1/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=16 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/rachidrezig/Qt/6.9.1/macos/mkspecs/macx-clang -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQuick.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtOpenGL.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtGui.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlMeta.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlModels.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlWorkerScript.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQml.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/include -I/Users/rachidrezig/Qt/6.9.1/macos/include/QtQmlIntegration -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtNetwork.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/16/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/rachidrezig/Qt/6.9.1/macos/lib EffectHandler.h -o moc_EffectHandler.cpp
+
+moc_AlimentManager.cpp: AlimentManager.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QObject \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qobject.h \
+		../Qt/6.9.1/macos/lib/QtQml.framework/Headers/QQmlListProperty \
+		../Qt/6.9.1/macos/lib/QtQml.framework/Headers/qqmllist.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QList \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qlist.h \
+		Aliment.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QString \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qstring.h \
+		AlimentsConcrets.h \
+		../Qt/6.9.1/macos/libexec/moc
+	/Users/rachidrezig/Qt/6.9.1/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=16 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/rachidrezig/Qt/6.9.1/macos/mkspecs/macx-clang -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/TamaLyon -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQuick.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtOpenGL.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtGui.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlMeta.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlModels.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQmlWorkerScript.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtQml.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/include -I/Users/rachidrezig/Qt/6.9.1/macos/include/QtQmlIntegration -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtNetwork.framework/Headers -I/Users/rachidrezig/Qt/6.9.1/macos/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/16/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/rachidrezig/Qt/6.9.1/macos/lib AlimentManager.h -o moc_AlimentManager.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1035,8 +1145,22 @@ LionManager.o: LionManager.cpp LionManager.h \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qstring.h \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QTimer \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qtimer.h \
+		WebSocketServer.h \
+		../Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers/QWebSocketServer \
+		../Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers/qwebsocketserver.h \
+		../Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers/QWebSocket \
+		../Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers/qwebsocket.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QSet \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qset.h \
+		WebSocketClient.h \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QDebug \
-		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qdebug.h
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qdebug.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QJsonDocument \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qjsondocument.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QJsonObject \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qjsonobject.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QUrl \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qurl.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o LionManager.o LionManager.cpp
 
 main.o: main.cpp ../Qt/6.9.1/macos/lib/QtGui.framework/Headers/QGuiApplication \
@@ -1047,16 +1171,30 @@ main.o: main.cpp ../Qt/6.9.1/macos/lib/QtGui.framework/Headers/QGuiApplication \
 		../Qt/6.9.1/macos/lib/QtQml.framework/Headers/qqmlcontext.h \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QDebug \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qdebug.h \
-		WebSocketServer.h \
+		LionManager.h \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QObject \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qobject.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QString \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qstring.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QTimer \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qtimer.h \
+		WebSocketServer.h \
 		../Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers/QWebSocketServer \
 		../Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers/qwebsocketserver.h \
 		../Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers/QWebSocket \
 		../Qt/6.9.1/macos/lib/QtWebSockets.framework/Headers/qwebsocket.h \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QSet \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qset.h \
-		WebSocketClient.h
+		WebSocketClient.h \
+		Lion.h \
+		Animal.h \
+		Aliment.h \
+		AlimentManager.h \
+		../Qt/6.9.1/macos/lib/QtQml.framework/Headers/QQmlListProperty \
+		../Qt/6.9.1/macos/lib/QtQml.framework/Headers/qqmllist.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QList \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qlist.h \
+		AlimentsConcrets.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 WebSocketClient.o: WebSocketClient.cpp WebSocketClient.h \
@@ -1089,6 +1227,79 @@ WebSocketServer.o: WebSocketServer.cpp WebSocketServer.h \
 		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qjsonobject.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o WebSocketServer.o WebSocketServer.cpp
 
+Aliment.o: Aliment.cpp Aliment.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QObject \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qobject.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QString \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qstring.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QDebug \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qdebug.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Aliment.o Aliment.cpp
+
+AlimentsConcrets.o: AlimentsConcrets.cpp AlimentsConcrets.h \
+		Aliment.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QObject \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qobject.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QString \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qstring.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QDebug \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qdebug.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o AlimentsConcrets.o AlimentsConcrets.cpp
+
+Animal.o: Animal.cpp Animal.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QObject \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qobject.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QString \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qstring.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QTimer \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qtimer.h \
+		Aliment.h \
+		EffectHandler.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QDebug \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qdebug.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Animal.o Animal.cpp
+
+Lion.o: Lion.cpp Lion.h \
+		Animal.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QObject \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qobject.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QString \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qstring.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QTimer \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qtimer.h \
+		Aliment.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QDebug \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qdebug.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Lion.o Lion.cpp
+
+EffectHandler.o: EffectHandler.cpp EffectHandler.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QObject \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qobject.h \
+		Aliment.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QString \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qstring.h \
+		Animal.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QTimer \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qtimer.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QDebug \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qdebug.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o EffectHandler.o EffectHandler.cpp
+
+AlimentManager.o: AlimentManager.cpp AlimentManager.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QObject \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qobject.h \
+		../Qt/6.9.1/macos/lib/QtQml.framework/Headers/QQmlListProperty \
+		../Qt/6.9.1/macos/lib/QtQml.framework/Headers/qqmllist.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QList \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qlist.h \
+		Aliment.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QString \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qstring.h \
+		AlimentsConcrets.h \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/QDebug \
+		../Qt/6.9.1/macos/lib/QtCore.framework/Headers/qdebug.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o AlimentManager.o AlimentManager.cpp
+
 qrc_qml.o: qrc_qml.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_qml.o qrc_qml.cpp
 
@@ -1100,6 +1311,24 @@ moc_WebSocketClient.o: moc_WebSocketClient.cpp
 
 moc_WebSocketServer.o: moc_WebSocketServer.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_WebSocketServer.o moc_WebSocketServer.cpp
+
+moc_Aliment.o: moc_Aliment.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_Aliment.o moc_Aliment.cpp
+
+moc_AlimentsConcrets.o: moc_AlimentsConcrets.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_AlimentsConcrets.o moc_AlimentsConcrets.cpp
+
+moc_Animal.o: moc_Animal.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_Animal.o moc_Animal.cpp
+
+moc_Lion.o: moc_Lion.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_Lion.o moc_Lion.cpp
+
+moc_EffectHandler.o: moc_EffectHandler.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_EffectHandler.o moc_EffectHandler.cpp
+
+moc_AlimentManager.o: moc_AlimentManager.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_AlimentManager.o moc_AlimentManager.cpp
 
 ####### Install
 

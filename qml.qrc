@@ -1,9 +1,12 @@
 <RCC>
     <qresource prefix="/">
         <file>Main.qml</file>
+        <file>MainOOP.qml</file>
+        <file>MainSimple.qml</file>
         <file>LyonFace.qml</file>
         <file>MoodBar.qml</file>
         <file>DraggableIcon.qml</file>
+        <file>DraggableAliment.qml</file>
     </qresource>
     <qresource prefix="/Images">
         <file>FILES/lion_affame.png</file>
