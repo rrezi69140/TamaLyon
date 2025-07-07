@@ -19,6 +19,9 @@ int main(int argc, char *argv[])
     LionManager lionManager;
     Lion lion("Simba");
     AlimentManager alimentManager;
+    
+    // Connecter l'AlimentManager au Lion
+    alimentManager.setLion(&lion);
 
     // Exposer les classes au QML
     engine.rootContext()->setContextProperty("lionManager", &lionManager);

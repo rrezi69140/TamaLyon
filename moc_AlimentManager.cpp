@@ -48,6 +48,8 @@ template <> constexpr inline auto AlimentManager::qt_create_metaobjectdata<qt_me
         "nom",
         "getAlimentCount",
         "getAlimentInfo",
+        "nourrirLion",
+        "alimentIndex",
         "alimentsDisponibles",
         "QQmlListProperty<Aliment>"
     };
@@ -69,10 +71,14 @@ template <> constexpr inline auto AlimentManager::qt_create_metaobjectdata<qt_me
         QtMocHelpers::MethodData<QString(int) const>(9, 2, QMC::AccessPublic, QMetaType::QString, {{
             { QMetaType::Int, 5 },
         }}),
+        // Method 'nourrirLion'
+        QtMocHelpers::MethodData<void(int) const>(10, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Int, 11 },
+        }}),
     };
     QtMocHelpers::UintData qt_properties {
         // property 'alimentsDisponibles'
-        QtMocHelpers::PropertyData<QQmlListProperty<Aliment>>(10, 0x80000000 | 11, QMC::DefaultPropertyFlags | QMC::EnumOrFlag | QMC::Constant),
+        QtMocHelpers::PropertyData<QQmlListProperty<Aliment>>(12, 0x80000000 | 13, QMC::DefaultPropertyFlags | QMC::EnumOrFlag | QMC::Constant),
     };
     QtMocHelpers::UintData qt_enums {
     };
@@ -103,6 +109,7 @@ void AlimentManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
         case 4: { QString _r = _t->getAlimentInfo((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])));
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
+        case 5: _t->nourrirLion((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         default: ;
         }
     }
@@ -138,14 +145,14 @@ int AlimentManager::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 6;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 5)
+        if (_id < 6)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 5;
+        _id -= 6;
     }
     if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
             || _c == QMetaObject::ResetProperty || _c == QMetaObject::BindableProperty

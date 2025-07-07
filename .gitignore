@@ -1,6 +1,6 @@
 # Rpertoires  ignorer
 build/
-FILES/
+
 
 # Fichiers temporaires
 *.autosave

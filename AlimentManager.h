@@ -7,6 +7,9 @@
 #include "Aliment.h"
 #include "AlimentsConcrets.h"
 
+// Forward declaration
+class Lion;
+
 /**
  * @brief Gestionnaire des aliments pour l'interface QML
  * Fournit les aliments disponibles et gère leur création
@@ -19,6 +22,9 @@ public:
     explicit AlimentManager(QObject *parent = nullptr);
     ~AlimentManager();
 
+    // Méthode pour connecter le lion
+    void setLion(Lion* lion);
+
     // Propriété pour QML
     QQmlListProperty<Aliment> alimentsDisponibles();
 
@@ -27,12 +33,14 @@ public:
     Q_INVOKABLE Aliment* getAlimentByName(const QString &nom) const;
     Q_INVOKABLE int getAlimentCount() const;
     Q_INVOKABLE QString getAlimentInfo(int index) const;
+    Q_INVOKABLE void nourrirLion(int alimentIndex) const;
 
 signals:
     void alimentsChanged();
 
 private:
     QList<Aliment*> m_aliments;
+    Lion* m_lion; // Référence au lion
     
     void initializeAliments();
     

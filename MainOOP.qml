@@ -14,6 +14,15 @@ Window {
 
     property bool isConnected: false
 
+    // Image de fond globale
+    Image {
+        anchors.fill: parent
+        source: "qrc:/FILES/background.png"
+        fillMode: Image.PreserveAspectCrop
+        opacity: 0.3
+        z: -1
+    }
+
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 20
@@ -162,6 +171,7 @@ Window {
 
                                 DraggableAliment {
                                     aliment: alimentManager.getAlimentByIndex(index)
+                                    alimentIndex: index
                                     Layout.preferredWidth: 80
                                     Layout.preferredHeight: 100
 
@@ -256,6 +266,21 @@ Window {
                             parent.color = "#ECF0F1"
                             parent.border.color = "#BDC3C7"
                             console.log("[DropArea] Drop détecté:", drop.text)
+                            
+                            // Nourrir le lion avec l'aliment droppé
+                            if (alimentManager) {
+                                var alimentIndex = parseInt(drop.text)
+                                if (!isNaN(alimentIndex)) {
+                                    console.log("[DropArea] 🎯 Nourrissage du lion avec l'aliment index:", alimentIndex)
+                                    console.log("[DropArea] État du lion AVANT nourrissage - Faim:", lion.faim, "Soif:", lion.soif, "Humeur:", lion.humeur, "État:", lion.etat)
+                                    alimentManager.nourrirLion(alimentIndex)
+                                    console.log("[DropArea] État du lion APRÈS nourrissage - Faim:", lion.faim, "Soif:", lion.soif, "Humeur:", lion.humeur, "État:", lion.etat)
+                                } else {
+                                    console.log("[DropArea] ❌ Index d'aliment invalide:", drop.text)
+                                }
+                            } else {
+                                console.log("[DropArea] ❌ alimentManager non disponible")
+                            }
                         }
                     }
 
@@ -264,37 +289,13 @@ Window {
                         anchors.centerIn: parent
                         spacing: 20
 
-                        // Image/Avatar du lion selon son état
-                        Rectangle {
+                        // Lion animé
+                        AnimatedLion {
+                            id: animatedLion
+                            lionRef: lion
                             Layout.preferredWidth: 200
                             Layout.preferredHeight: 200
                             Layout.alignment: Qt.AlignHCenter
-                            color: "transparent"
-                            radius: 100
-
-                            Text {
-                                anchors.centerIn: parent
-                                text: {
-                                    if (lion.estMort) return "💀"
-                                    switch (lion.etat) {
-                                        case "Normal": return "🦁"
-                                        case "Affamé": return "😿"
-                                        case "Assoiffé": return "🥵"
-                                        case "Triste": return "😢"
-                                        case "Empoisonné": return "🤢"
-                                        default: return "🦁"
-                                    }
-                                }
-                                font.pixelSize: 120
-                                
-                                // Animation selon l'état
-                                SequentialAnimation on scale {
-                                    running: !lion.estMort
-                                    loops: Animation.Infinite
-                                    NumberAnimation { to: 1.1; duration: 2000; easing.type: Easing.InOutQuad }
-                                    NumberAnimation { to: 1.0; duration: 2000; easing.type: Easing.InOutQuad }
-                                }
-                            }
                         }
 
                         // Nom et infos du lion

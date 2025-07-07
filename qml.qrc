@@ -7,11 +7,20 @@
         <file>MoodBar.qml</file>
         <file>DraggableIcon.qml</file>
         <file>DraggableAliment.qml</file>
+        <file>AnimatedLion.qml</file>
     </qresource>
-    <qresource prefix="/Images">
-        <file>FILES/lion_affame.png</file>
-        <file>FILES/lion_endormi.png</file>
-        <file>FILES/lion_triste.png</file>
-        <file>FILES/lion_tres_content.png</file>
+    <qresource prefix="/FILES">
+        <file alias="background.png">FILES/background.png</file>
+        <file alias="lion_normal.png">FILES/lion_normal.png</file>
+        <file alias="lion_affame.png">FILES/lion_affame.png</file>
+        <file alias="lion_assoiffe.png">FILES/lion_assoiffe.png</file>
+        <file alias="lion_empoisonne.png">FILES/lion_empoisonne.png</file>
+        <file alias="lion_endormi.png">FILES/lion_endormi.png</file>
+        <file alias="lion_triste.png">FILES/lion_triste.png</file>
+        <file alias="lion_tres_content.png">FILES/lion_tres_content.png</file>
+        <file alias="lion_mort.png">FILES/lion_mort.png</file>
+        <file alias="lion_mange_01.png">FILES/lion_mange_01.png</file>
+        <file alias="lion_mange_02.png">FILES/lion_mange_02.png</file>
+        <file alias="lion_mange_03.png">FILES/lion_mange_03.png</file>
     </qresource>
 </RCC>

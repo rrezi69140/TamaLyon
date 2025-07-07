@@ -1008,14 +1008,23 @@ qrc_qml.cpp: qml.qrc \
 		MainSimple.qml \
 		Main.qml \
 		DraggableIcon.qml \
+		AnimatedLion.qml \
 		LyonFace.qml \
 		MainOOP.qml \
 		DraggableAliment.qml \
 		MoodBar.qml \
+		FILES/lion_mange_03.png \
+		FILES/background.png \
+		FILES/lion_mort.png \
 		FILES/lion_tres_content.png \
 		FILES/lion_affame.png \
 		FILES/lion_endormi.png \
-		FILES/lion_triste.png
+		FILES/lion_mange_01.png \
+		FILES/lion_empoisonne.png \
+		FILES/lion_triste.png \
+		FILES/lion_normal.png \
+		FILES/lion_assoiffe.png \
+		FILES/lion_mange_02.png
 	/Users/rachidrezig/Qt/6.9.1/macos/libexec/rcc -name qml --no-zstd qml.qrc -o qrc_qml.cpp
 
 compiler_moc_header_make_all: moc_LionManager.cpp moc_WebSocketClient.cpp moc_WebSocketServer.cpp moc_Aliment.cpp moc_AlimentsConcrets.cpp moc_Animal.cpp moc_Lion.cpp moc_EffectHandler.cpp moc_AlimentManager.cpp

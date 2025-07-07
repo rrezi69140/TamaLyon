@@ -10,6 +10,7 @@ Item {
     
     // Propriétés publiques
     property var aliment: null
+    property int alimentIndex: -1
     property bool available: true
     property bool isDragging: false
     property alias mouseArea: mouseArea
@@ -232,7 +233,8 @@ Item {
         Drag.hotSpot.x: width / 2
         Drag.hotSpot.y: height / 2
         Drag.mimeData: {
-            "application/x-aliment": aliment ? aliment.nom : ""
+            "application/x-aliment": aliment ? aliment.nom : "",
+            "text/plain": alimentIndex.toString()
         }
         
         // Contenu du proxy (copie de l'original)
