@@ -65,6 +65,8 @@ Item {
             visible: lionImage.status !== Image.Ready
         }
         
+
+        
         // Animation de respiration (toujours active)
         SequentialAnimation on scale {
             running: true // Toujours en cours pour être visible
@@ -298,36 +300,6 @@ Item {
             console.log("[AnimatedLion] 🥤 Soif changée:", lionRef.soif)
             // Force la mise à jour de l'image
             lionImage.source = Qt.binding(function() { return getCurrentImageSource })
-        }
-    }
-    
-    // Effets de particules (optionnel)
-    Rectangle {
-        id: heartEffect
-        width: 30
-        height: 30
-        color: "transparent"
-        anchors.centerIn: parent
-        visible: lionRef && lionRef.humeur > 90
-        
-        Text {
-            anchors.centerIn: parent
-            text: "❤️"
-            font.pixelSize: 20
-            
-            SequentialAnimation on y {
-                running: parent.visible
-                loops: Animation.Infinite
-                NumberAnimation { to: -50; duration: 2000 }
-                NumberAnimation { to: 0; duration: 0 }
-            }
-            
-            SequentialAnimation on opacity {
-                running: parent.visible
-                loops: Animation.Infinite
-                NumberAnimation { to: 0; duration: 2000 }
-                NumberAnimation { to: 1; duration: 0 }
-            }
         }
     }
 }
