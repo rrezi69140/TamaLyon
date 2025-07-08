@@ -8,13 +8,13 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 
-// Inclure les classes à tester
-#include "../Lion.h"
-#include "../AlimentManager.h"
-#include "../LionManager.h"
-#include "../WebSocketServer.h"
-#include "../WebSocketClient.h"
-#include "../AlimentsConcrets.h"
+// Inclure les classes à tester avec la nouvelle structure
+#include "../src/core/Lion.h"
+#include "../src/managers/AlimentManager.h"
+#include "../src/managers/LionManager.h"
+#include "../src/network/WebSocketServer.h"
+#include "../src/network/WebSocketClient.h"
+#include "../src/core/AlimentsConcrets.h"
 
 /**
  * @brief Tests unitaires pour TamaLyon

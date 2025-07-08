@@ -1,13 +1,190 @@
-# Répertoires à ignorer
+# =============================================================================
+# .gitignore pour TamaLyon - Projet Qt/QML avec C++
+# =============================================================================
+
+# ========================================
+# Fichiers de Build et Temporaires
+# ========================================
+
+# Dossiers de build
 build/
 build-*/
+*-build/
 .tmp/
 debug/
 release/
 
+# Fichiers générés par qmake
+Makefile*
+*.pro.user*
+*.qmake.stash
+
+# Fichiers générés par CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+*.cmake
+!CMakeLists.txt
+
 # Fichiers générés par Qt
-qrc_*.cpp
+*.o
+*.obj
+*.so
+*.dll
+*.dylib
+*.a
+*.lib
+*.pdb
+*.idb
+*.ilk
+*.exp
+*.pch
+
+# Fichiers MOC (Meta-Object Compiler)
 moc_*.cpp
+moc_*.h
+*_moc.cpp
+
+# Fichiers RCC (Resource Compiler) 
+qrc_*.cpp
+*_qrc.cpp
+
+# Fichiers UIC (User Interface Compiler)
+ui_*.h
+
+# ========================================
+# Applications Compilées
+# ========================================
+
+# Applications Mac
+*.app/
+*.dSYM/
+
+# Applications Windows
+*.exe
+*.msi
+
+# Applications Linux
+TamaLyon
+!src/
+!qml/
+
+# ========================================
+# Logs et Données de Debug
+# ========================================
+
+# Logs d'application
+logs/*.log
+*.log
+temp/*.log
+
+# Fichiers de debug
+*.debug
+*.pdb
+*.ilk
+
+# Core dumps
+core.*
+*.core
+
+# ========================================
+# Fichiers Temporaires du Système
+# ========================================
+
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Windows
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+
+# ========================================
+# IDEs et Éditeurs
+# ========================================
+
+# Qt Creator
+*.user
+*.autosave
+*.orig
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# Visual Studio
+.vs/
+*.vcxproj.user
+*.vcxproj.filters
+
+# CLion / IntelliJ
+.idea/
+cmake-build-*/
+
+# Xcode
+*.xcodeproj/
+*.xcworkspace/
+
+# ========================================
+# Dossiers Temporaires du Projet
+# ========================================
+
+# Dossier temporaire personnalisé
+temp/
+tmp/
+
+# Tests temporaires
+test_output/
+test_results/
+
+# ========================================
+# Spécifique au Projet TamaLyon
+# ========================================
+
+# Fichiers de test unitaire compilés
+test_unit_aliment
+test_unit_aliment.app/
+basic_test
+basic_test.app/
+TestTamaLyon
+TestTamaLyon.app/
+
+# Logs spécifiques
+logs_auto_*.log
+logs_client_*.log
+logs_host_*.log
+logs_manual_*.log
+
+# ========================================
+# Garder ces Fichiers Importants
+# ========================================
+
+# Configuration et documentation
+!CMakeLists.txt
+!*.pro
+!*.qrc
+!README.md
+!docs/
+!scripts/
+
+# Code source
+!src/
+!qml/
+!tests/
+!resources/
+
+# Fichiers de configuration
+!.gitignore
+!.gitattributes
 moc_*.h
 ui_*.h
 Makefile*

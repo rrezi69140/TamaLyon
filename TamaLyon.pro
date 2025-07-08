@@ -15,18 +15,61 @@ QT += quick core websockets
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_UP_TO=0x060000 # disables all APIs deprecated in Qt 6.0.0 and earlier
 
-# Input
-HEADERS += LionManager.h WebSocketClient.h WebSocketServer.h \
-           Aliment.h AlimentsConcrets.h Animal.h Lion.h \
-           EffectHandler.h AlimentManager.h
-SOURCES += LionManager.cpp \
-           main.cpp \
-           WebSocketClient.cpp \
-           WebSocketServer.cpp \
-           Aliment.cpp \
-           AlimentsConcrets.cpp \
-           Animal.cpp \
-           Lion.cpp \
-           EffectHandler.cpp \
-           AlimentManager.cpp
+######################################################################
+# TamaLyon - Projet orienté objet avec synchronisation réseau
+######################################################################
+
+TEMPLATE = app
+TARGET = TamaLyon
+INCLUDEPATH += . src src/core src/managers src/network
+
+QT += quick core websockets
+
+# Configuration du projet
+CONFIG += c++17
+
+# Dossiers d'inclusion
+INCLUDEPATH += src/core src/managers src/network
+
+# Fichiers sources - Core
+SOURCES += main.cpp \
+           src/core/Animal.cpp \
+           src/core/Lion.cpp \
+           src/core/Aliment.cpp \
+           src/core/AlimentsConcrets.cpp \
+           src/core/EffectHandler.cpp \
+           src/managers/AlimentManager.cpp \
+           src/managers/LionManager.cpp \
+           src/network/WebSocketClient.cpp \
+           src/network/WebSocketServer.cpp
+
+# Fichiers headers - Core  
+HEADERS += src/core/Animal.h \
+           src/core/Lion.h \
+           src/core/Aliment.h \
+           src/core/AlimentsConcrets.h \
+           src/core/EffectHandler.h \
+           src/managers/AlimentManager.h \
+           src/managers/LionManager.h \
+           src/network/WebSocketClient.h \
+           src/network/WebSocketServer.h
+
+# Ressources QML
 RESOURCES += qml.qrc
+
+# Dossiers de build
+MOC_DIR = build/moc
+OBJECTS_DIR = build/obj
+RCC_DIR = build/rcc
+UI_DIR = build/ui
+
+# Dossier de sortie
+DESTDIR = .
+
+# Configuration pour les tests
+CONFIG(debug, debug|release) {
+    DEFINES += DEBUG_MODE
+}
+
+# Nettoyage personnalisé
+QMAKE_CLEAN += build/moc/* build/obj/* build/rcc/* build/ui/*

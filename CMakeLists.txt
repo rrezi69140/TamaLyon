@@ -9,42 +9,40 @@ find_package(Qt6 REQUIRED COMPONENTS Quick Core WebSockets)
 
 qt_standard_project_setup(REQUIRES 6.8)
 
+# Définir les dossiers d'inclusion
+include_directories(src src/core src/managers src/network)
+
 qt_add_executable(appTAMALYON
     main.cpp
-    LionManager.cpp
-    LionManager.h
-    WebSocketServer.cpp
-    WebSocketServer.h
-    WebSocketClient.cpp
-    WebSocketClient.h
-    Aliment.cpp
-    Aliment.h
-    Animal.cpp
-    Animal.h
-    Lion.cpp
-    Lion.h
-    AlimentsConcrets.cpp
-    AlimentsConcrets.h
-    AlimentManager.cpp
-    AlimentManager.h
-    EffectHandler.cpp
-    EffectHandler.h
+    
+    # Core - Logique métier
+    src/core/Animal.cpp
+    src/core/Animal.h
+    src/core/Lion.cpp
+    src/core/Lion.h
+    src/core/Aliment.cpp
+    src/core/Aliment.h
+    src/core/AlimentsConcrets.cpp
+    src/core/AlimentsConcrets.h
+    src/core/EffectHandler.cpp
+    src/core/EffectHandler.h
+    
+    # Managers - Gestion de l'état
+    src/managers/LionManager.cpp
+    src/managers/LionManager.h
+    src/managers/AlimentManager.cpp
+    src/managers/AlimentManager.h
+    
+    # Network - Communication réseau
+    src/network/WebSocketServer.cpp
+    src/network/WebSocketServer.h
+    src/network/WebSocketClient.cpp
 )
 
-qt_add_resources(appTAMALYON "qml"
-    PREFIX "/"
+# Utiliser le fichier qml.qrc existant
+qt_add_resources(appTAMALYON "qml_resources"
     FILES
-        Main.qml
-        MainOOP.qml
-        MainSimple.qml
-        LyonFace.qml
-        DraggableIcon.qml
-        DraggableAliment.qml
-        MoodBar.qml
-        FILES/lion_affame.png
-        FILES/lion_endormi.png
-        FILES/lion_tres_content.png
-        FILES/lion_triste.png
+        qml.qrc
 )
 
 set_target_properties(appTAMALYON PROPERTIES

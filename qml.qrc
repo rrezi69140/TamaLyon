@@ -1,26 +1,32 @@
 <RCC>
-    <qresource prefix="/">
-        <file>Main.qml</file>
-        <file>MainOOP.qml</file>
-        <file>MainSimple.qml</file>
-        <file>LyonFace.qml</file>
-        <file>MoodBar.qml</file>
-        <file>DraggableIcon.qml</file>
-        <file>DraggableAliment.qml</file>
-        <file>AnimatedLion.qml</file>
+    <!-- Fichiers QML organisés par dossiers -->
+    <qresource prefix="/qml">
+        <!-- Pages principales -->
+        <file>qml/pages/Main.qml</file>
+        <file>qml/pages/MainOOP.qml</file>
+        <file>qml/pages/MainSimple.qml</file>
+        
+        <!-- Composants réutilisables -->
+        <file>qml/components/LyonFace.qml</file>
+        <file>qml/components/MoodBar.qml</file>
+        <file>qml/components/DraggableIcon.qml</file>
+        <file>qml/components/DraggableAliment.qml</file>
+        <file>qml/components/AnimatedLion.qml</file>
     </qresource>
-    <qresource prefix="/FILES">
-        <file alias="background.png">FILES/background.png</file>
-        <file alias="lion_normal.png">FILES/lion_normal.png</file>
-        <file alias="lion_affame.png">FILES/lion_affame.png</file>
-        <file alias="lion_assoiffe.png">FILES/lion_assoiffe.png</file>
-        <file alias="lion_empoisonne.png">FILES/lion_empoisonne.png</file>
-        <file alias="lion_endormi.png">FILES/lion_endormi.png</file>
-        <file alias="lion_triste.png">FILES/lion_triste.png</file>
-        <file alias="lion_tres_content.png">FILES/lion_tres_content.png</file>
-        <file alias="lion_mort.png">FILES/lion_mort.png</file>
-        <file alias="lion_mange_01.png">FILES/lion_mange_01.png</file>
-        <file alias="lion_mange_02.png">FILES/lion_mange_02.png</file>
-        <file alias="lion_mange_03.png">FILES/lion_mange_03.png</file>
+    
+    <!-- Ressources images -->
+    <qresource prefix="/images">
+        <file alias="background.png">resources/background.png</file>
+        <file alias="lion_normal.png">resources/lion_normal.png</file>
+        <file alias="lion_affame.png">resources/lion_affame.png</file>
+        <file alias="lion_assoiffe.png">resources/lion_assoiffe.png</file>
+        <file alias="lion_empoisonne.png">resources/lion_empoisonne.png</file>
+        <file alias="lion_endormi.png">resources/lion_endormi.png</file>
+        <file alias="lion_triste.png">resources/lion_triste.png</file>
+        <file alias="lion_tres_content.png">resources/lion_tres_content.png</file>
+        <file alias="lion_mort.png">resources/lion_mort.png</file>
+        <file alias="lion_mange_01.png">resources/lion_mange_01.png</file>
+        <file alias="lion_mange_02.png">resources/lion_mange_02.png</file>
+        <file alias="lion_mange_03.png">resources/lion_mange_03.png</file>
     </qresource>
 </RCC>

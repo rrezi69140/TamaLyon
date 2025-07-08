@@ -3,11 +3,12 @@
 #include <QQmlContext>
 #include <QDebug>
 
-#include "LionManager.h"
-#include "WebSocketServer.h"
-#include "WebSocketClient.h"
-#include "Lion.h"
-#include "AlimentManager.h"
+// Includes avec nouvelle structure
+#include "src/managers/LionManager.h"
+#include "src/network/WebSocketServer.h"
+#include "src/network/WebSocketClient.h"
+#include "src/core/Lion.h"
+#include "src/managers/AlimentManager.h"
 
 int main(int argc, char *argv[])
 {
@@ -52,7 +53,8 @@ int main(int argc, char *argv[])
 
     qDebug() << "[main] 🚀 TamaLyon démarré avec la nouvelle architecture OOP";
 
-    const QUrl url(QStringLiteral("qrc:/MainOOP.qml"));
+    // Charger la page principale avec la nouvelle structure
+    const QUrl url(QStringLiteral("qrc:/qml/qml/pages/MainOOP.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
                          if (!obj && objUrl == url)
