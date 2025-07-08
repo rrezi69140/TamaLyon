@@ -95,18 +95,31 @@ Window {
                     }
 
                     Button {
-                        text: isConnected ? "📤 Host" : "🏠 Héberger"
+                        text: isConnected ? "� Déconnecter" : "🏠 Héberger"
                         onClicked: {
-                            lionManager.startAsHost()
-                            isConnected = true
+                            if (isConnected) {
+                                console.log("[MainOOP] 🔌 Déconnexion...")
+                                // TODO: Ajouter logique de déconnexion
+                                isConnected = false
+                            } else {
+                                console.log("[MainOOP] 🏠 Démarrage en mode Host...")
+                                lionManager.startAsHost()
+                                isConnected = true
+                            }
                         }
                     }
 
                     Button {
-                        text: isConnected ? "📥 Client" : "🔗 Rejoindre"
+                        text: isConnected ? "� Statut" : "🔗 Rejoindre"
                         onClicked: {
-                            lionManager.joinAsClient()
-                            isConnected = true
+                            if (isConnected) {
+                                console.log("[MainOOP] 📊 Affichage du statut de connexion")
+                                // TODO: Afficher statut de connexion
+                            } else {
+                                console.log("[MainOOP] 🔗 Connexion en mode Client...")
+                                lionManager.joinAsClient()
+                                isConnected = true
+                            }
                         }
                     }
                 }
@@ -177,7 +190,14 @@ Window {
 
                                     onAlimentDropped: function(alimentData) {
                                         console.log("[Main] Aliment droppé:", alimentData.nom)
-                                        lion.donnerAliment(alimentData)
+                                        // Utiliser alimentManager pour la synchronisation réseau
+                                        if (alimentManager) {
+                                            console.log("[Main] 🎯 Appel alimentManager.nourrirLion avec index:", index)
+                                            alimentManager.nourrirLion(index)
+                                        } else {
+                                            console.log("[Main] ❌ alimentManager non disponible, appel direct")
+                                            lion.donnerAliment(alimentData)
+                                        }
                                     }
                                 }
                             }

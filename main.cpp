@@ -20,8 +20,30 @@ int main(int argc, char *argv[])
     Lion lion("Simba");
     AlimentManager alimentManager;
     
-    // Connecter l'AlimentManager au Lion
+    // Connecter l'AlimentManager au Lion et au LionManager
     alimentManager.setLion(&lion);
+    alimentManager.setLionManager(&lionManager);
+    lionManager.setAlimentManager(&alimentManager);
+    
+    // NOUVEAU: Connecter LionManager aux changements du Lion pour synchroniser les valeurs
+    QObject::connect(&lionManager, &LionManager::hungerChanged, [&lionManager, &lion]() {
+        int currentFaim = lion.getFaim();
+        int targetFaim = lionManager.getHunger();
+        lion.appliquerEffetFaim(targetFaim - currentFaim);
+        qDebug() << "[main] 🔄 Sync Faim:" << currentFaim << "=>" << targetFaim;
+    });
+    QObject::connect(&lionManager, &LionManager::thirstChanged, [&lionManager, &lion]() {
+        int currentSoif = lion.getSoif();
+        int targetSoif = lionManager.getThirst();
+        lion.appliquerEffetSoif(targetSoif - currentSoif);
+        qDebug() << "[main] 🔄 Sync Soif:" << currentSoif << "=>" << targetSoif;
+    });
+    QObject::connect(&lionManager, &LionManager::affectionChanged, [&lionManager, &lion]() {
+        int currentHumeur = lion.getHumeur();
+        int targetHumeur = lionManager.getAffection();
+        lion.appliquerEffetHumeur(targetHumeur - currentHumeur);
+        qDebug() << "[main] 🔄 Sync Humeur:" << currentHumeur << "=>" << targetHumeur;
+    });
 
     // Exposer les classes au QML
     engine.rootContext()->setContextProperty("lionManager", &lionManager);

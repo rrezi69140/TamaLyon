@@ -1,4 +1,5 @@
 #include "LionManager.h"
+#include "AlimentManager.h"
 #include <QDebug>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -14,7 +15,8 @@ LionManager::LionManager(QObject *parent)
     energy(100),
     server(nullptr),
     client(nullptr),
-    isHost(false)
+    isHost(false),
+    m_alimentManager(nullptr)
 {
     decayTimer.setInterval(5000); // toutes les 5 secondes
     connect(&decayTimer, &QTimer::timeout, this, &LionManager::decayStates);
@@ -63,10 +65,12 @@ void LionManager::pet(int points) {
 }
 
 void LionManager::decayStates() {
-    // Seul l'hôte fait décrémenter les valeurs
-    if (!isHost && client) {
-        return; // Le client reçoit les mises à jour du serveur
+    // Seul l'hôte calcule la décroissance
+    if (!isHost) {
+        return; // Le client ne fait rien, il attend les updates du serveur
     }
+    
+    qDebug() << "[LionManager] 🏠 HÔTE - Calcul de la décroissance";
     
     hunger = qMax(hunger - 5, 0);
     thirst = qMax(thirst - 5, 0);
@@ -103,8 +107,9 @@ void LionManager::updateMood() {
 
     setMood(newMood);
 
-    // Broadcast state if we're the host
+    // Seul l'hôte diffuse l'état
     if (isHost) {
+        qDebug() << "[LionManager] 🏠 HÔTE - Diffusion de l'état après changement";
         broadcastState();
     }
 
@@ -182,8 +187,23 @@ void LionManager::water(int points) {
     giveWater(points);
 }
 
+void LionManager::setAlimentManager(AlimentManager* alimentManager)
+{
+    m_alimentManager = alimentManager;
+    qDebug() << "[LionManager] AlimentManager connecté:" << (alimentManager ? "OUI" : "NON");
+}
+
+void LionManager::broadcastCurrentState()
+{
+    if (isHost) {
+        qDebug() << "[LionManager] 📢 Diffusion de l'état actuel";
+        broadcastState();
+    }
+}
+
 void LionManager::broadcastState() {
-    if (server) {
+    if (server && m_alimentManager) {
+        // Récupérer l'état réel du Lion via AlimentManager
         QJsonObject state;
         state["hunger"] = hunger;
         state["thirst"] = thirst;
@@ -197,7 +217,7 @@ void LionManager::broadcastState() {
 }
 
 void LionManager::onCommandReceived(const QString &command) {
-    qDebug() << "[LionManager] Commande reçue du client:" << command;
+    qDebug() << "[LionManager] 🏠 HÔTE - Commande reçue du client:" << command;
     
     if (command == "feed") {
         feed(10);
@@ -205,22 +225,51 @@ void LionManager::onCommandReceived(const QString &command) {
         water(10);
     } else if (command == "pet") {
         pet(10);
+    } else if (command.startsWith("aliment:")) {
+        // Commande d'aliment venant d'un client
+        QString indexStr = command.mid(8); // Enlever "aliment:"
+        bool ok;
+        int alimentIndex = indexStr.toInt(&ok);
+        if (ok && m_alimentManager) {
+            qDebug() << "[LionManager] 🍽️ HÔTE - Traitement commande aliment du CLIENT - Index:" << alimentIndex;
+            // L'hôte traite la commande du client directement (pas de vérification de mode)
+            m_alimentManager->processClientAlimentCommand(alimentIndex);
+        } else {
+            qDebug() << "[LionManager] ❌ Index d'aliment invalide ou AlimentManager manquant:" << command;
+        }
+    } else {
+        qDebug() << "[LionManager] ⚠️ Commande inconnue:" << command;
     }
 }
 
 void LionManager::onStateReceived(const QJsonObject &state) {
-    qDebug() << "[LionManager] État reçu du serveur:" << state;
+    qDebug() << "[LionManager] 📱 CLIENT - État reçu du serveur:" << state;
     
-    // Update local state from server
-    hunger = state["hunger"].toInt();
-    thirst = state["thirst"].toInt();
-    affection = state["affection"].toInt();
-    energy = state["energy"].toInt();
-    
-    emit hungerChanged();
-    emit thirstChanged();
-    emit affectionChanged();
-    emit energyChanged();
-    
-    setMood(state["mood"].toString());
+    // Le client applique TOUT ce que le serveur lui envoie
+    if (!isHost) {
+        int newHunger = state["hunger"].toInt();
+        int newThirst = state["thirst"].toInt();
+        int newAffection = state["affection"].toInt();
+        int newEnergy = state["energy"].toInt();
+        QString newMood = state["mood"].toString();
+        
+        qDebug() << "[LionManager] 📱 CLIENT - Synchronisation:" 
+                 << "Hunger:" << hunger << "=>" << newHunger
+                 << "Thirst:" << thirst << "=>" << newThirst
+                 << "Affection:" << affection << "=>" << newAffection
+                 << "Mood:" << m_mood << "=>" << newMood;
+        
+        hunger = newHunger;
+        thirst = newThirst;
+        affection = newAffection;
+        energy = newEnergy;
+        
+        emit hungerChanged();
+        emit thirstChanged();
+        emit affectionChanged();
+        emit energyChanged();
+        
+        setMood(newMood);
+        qDebug() << "[LionManager] 🔄 CLIENT - État local synchronisé avec le serveur";
+    }
 }

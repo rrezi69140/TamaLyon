@@ -1,0 +1,286 @@
+[Animal] Créé: "Simba" de type "Lion"
+[Animal] Chaîne d'effets initialisée
+[Lion] 🦁 Lion créé: "Simba"
+[AlimentManager] Initialisation
+[AlimentManager] Création des aliments
+[Aliment] Créé: "Aliment"
+[Pomme] Créée: "Pomme"
+[Aliment] Créé: "Aliment"
+[Pizza] Créée: "Pizza"
+[Aliment] Créé: "Aliment"
+[Eau] Créée: "Eau"
+[Aliment] Créé: "Aliment"
+[Steak] Créé: "Steak"
+[Aliment] Créé: "Aliment"
+[ChampignonToxique] Créé: "Champignon Toxique"
+[Aliment] Créé: "Aliment"
+[Chocolat] Créé: "Chocolat"
+[Aliment] Créé: "Aliment"
+[Poisson] Créé: "Poisson"
+[AlimentManager] 7 aliments créés
+"[AlimentManager] 0. 🍎 Pomme - Faim:8 Soif:5 Humeur:3 Toxique:NON"
+"[AlimentManager] 1. 🍕 Pizza - Faim:25 Soif:-5 Humeur:15 Toxique:NON"
+"[AlimentManager] 2. 💧 Eau - Faim:0 Soif:20 Humeur:2 Toxique:NON"
+"[AlimentManager] 3. 🥩 Steak - Faim:30 Soif:-3 Humeur:10 Toxique:NON"
+"[AlimentManager] 4. 🍄 Champignon Toxique - Faim:5 Soif:0 Humeur:-15 Toxique:OUI"
+"[AlimentManager] 5. 🍫 Chocolat - Faim:12 Soif:-2 Humeur:20 Toxique:NON"
+"[AlimentManager] 6. 🐟 Poisson - Faim:20 Soif:3 Humeur:8 Toxique:NON"
+[AlimentManager] Lion connecté: "Simba"
+[AlimentManager] LionManager connecté: OUI
+[LionManager] AlimentManager connecté: OUI
+[main] 🚀 TamaLyon démarré avec la nouvelle architecture OOP
+qml: [AnimatedLion] 🦁 LION CHANGÉ!
+qml: [AnimatedLion] ✅ Lion connecté: Simba
+qml: [AnimatedLion] 📊 État initial - Faim: 100 Soif: 100 Humeur: 100 État: Normal
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 100 Soif: 100 Humeur: 100 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 100 Image: qrc:/FILES/lion_tres_content.png
+qml: [AnimatedLion] 🔄 Source d'image changée: qrc:/FILES/lion_tres_content.png
+qml: [AnimatedLion] ✅ Image chargée: qrc:/FILES/lion_tres_content.png
+[Animal] Décroissance pour "Simba"
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 96 Soif: 100 Humeur: 100 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 100 Image: qrc:/FILES/lion_tres_content.png
+qml: [AnimatedLion] 🍽️ Faim changée: 96
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 96 Soif: 97 Humeur: 100 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 100 Image: qrc:/FILES/lion_tres_content.png
+qml: [AnimatedLion] 🥤 Soif changée: 97
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 96 Soif: 97 Humeur: 98 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 98 Image: qrc:/FILES/lion_tres_content.png
+qml: [AnimatedLion] 😊 Humeur changée: 98
+qml: [MainOOP] 🔗 Connexion en mode Client...
+[LionManager] Connexion en tant que client
+[WebSocketClient] Connexion à QUrl("ws://localhost:9999")
+[WebSocketClient] Connecté au serveur
+[LionManager] 📱 CLIENT - État reçu du serveur: QJsonObject({"affection":98,"energy":97,"hunger":95,"mood":"joyeux","thirst":95})
+[LionManager] 📱 CLIENT - Synchronisation: Hunger: 100 => 95 Thirst: 100 => 95 Affection: 100 => 98 Mood: "joyeux" => "joyeux"
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 95 Soif: 97 Humeur: 98 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 98 Image: qrc:/FILES/lion_tres_content.png
+qml: [AnimatedLion] 🍽️ Faim changée: 95
+[main] 🔄 Sync Faim: 96 => 95
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 95 Soif: 95 Humeur: 98 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 98 Image: qrc:/FILES/lion_tres_content.png
+qml: [AnimatedLion] 🥤 Soif changée: 95
+[main] 🔄 Sync Soif: 97 => 95
+[main] 🔄 Sync Humeur: 98 => 98
+[LionManager] 🔄 CLIENT - État local synchronisé avec le serveur
+[Animal] Décroissance pour "Simba"
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 91 Soif: 95 Humeur: 98 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 98 Image: qrc:/FILES/lion_tres_content.png
+qml: [AnimatedLion] 🍽️ Faim changée: 91
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 91 Soif: 92 Humeur: 98 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 98 Image: qrc:/FILES/lion_tres_content.png
+qml: [AnimatedLion] 🥤 Soif changée: 92
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 91 Soif: 92 Humeur: 96 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 96 Image: qrc:/FILES/lion_tres_content.png
+qml: [AnimatedLion] 😊 Humeur changée: 96
+[LionManager] 📱 CLIENT - État reçu du serveur: QJsonObject({"affection":96,"energy":94,"hunger":90,"mood":"joyeux","thirst":90})
+[LionManager] 📱 CLIENT - Synchronisation: Hunger: 95 => 90 Thirst: 95 => 90 Affection: 98 => 96 Mood: "joyeux" => "joyeux"
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 90 Soif: 92 Humeur: 96 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 96 Image: qrc:/FILES/lion_tres_content.png
+qml: [AnimatedLion] 🍽️ Faim changée: 90
+[main] 🔄 Sync Faim: 91 => 90
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 90 Soif: 90 Humeur: 96 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 96 Image: qrc:/FILES/lion_tres_content.png
+qml: [AnimatedLion] 🥤 Soif changée: 90
+[main] 🔄 Sync Soif: 92 => 90
+[main] 🔄 Sync Humeur: 96 => 96
+[LionManager] 🔄 CLIENT - État local synchronisé avec le serveur
+qml: [DraggableItem] Début du drag: Pomme
+qml: [DropArea] Aliment entré dans la zone
+qml: [DraggableItem] Fin du drag: Pomme
+qml: [DraggableItem] Position globale au relâchement: 691.98669375 302.98825
+qml: [DraggableItem] ✅ Drop détecté sur cible valide!
+qml: [Main] Aliment droppé: Pomme
+[Animal] "Simba" reçoit "Pomme"
+[EffectHandler] "Faim" traite "Pomme"
+[FaimHandler] "Pomme" impact faim: 8
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 98 Soif: 90 Humeur: 96 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 96 Image: qrc:/FILES/lion_tres_content.png
+qml: [AnimatedLion] 🍽️ Faim changée: 98
+[EffectHandler] "Soif" traite "Pomme"
+[SoifHandler] "Pomme" impact soif: 5
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 98 Soif: 95 Humeur: 96 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 96 Image: qrc:/FILES/lion_tres_content.png
+qml: [AnimatedLion] 🥤 Soif changée: 95
+[EffectHandler] "Humeur" traite "Pomme"
+[HumeurHandler] "Pomme" impact humeur: 3
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 98 Soif: 95 Humeur: 99 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 99 Image: qrc:/FILES/lion_tres_content.png
+qml: [AnimatedLion] 😊 Humeur changée: 99
+[EffectHandler] "Empoisonnement" traite "Pomme"
+[Lion] 🦁 "Simba" réagit à "Pomme"
+qml: [AnimatedLion] 🍽️ Réaction à l'aliment: 🦁 Simba goûte le fruit par curiosité...  😊
+qml: [AnimatedLion] 🍽️ Mode manger - Frame: 1 Image: qrc:/FILES/lion_mange_01.png
+qml: [AnimatedLion] 🔄 Source d'image changée: qrc:/FILES/lion_mange_01.png
+qml: [AnimatedLion] ✅ Image chargée: qrc:/FILES/lion_mange_01.png
+qml: [DraggableItem] Marquer Pomme comme utilisé
+qml: [DropArea] Aliment sorti de la zone
+qml: [AnimatedLion] 🍽️ Mode manger - Frame: 2 Image: qrc:/FILES/lion_mange_02.png
+qml: [AnimatedLion] 🔄 Source d'image changée: qrc:/FILES/lion_mange_02.png
+qml: [AnimatedLion] ✅ Image chargée: qrc:/FILES/lion_mange_02.png
+qml: [AnimatedLion] 🍽️ Mode manger - Frame: 3 Image: qrc:/FILES/lion_mange_03.png
+qml: [AnimatedLion] 🔄 Source d'image changée: qrc:/FILES/lion_mange_03.png
+qml: [AnimatedLion] ✅ Image chargée: qrc:/FILES/lion_mange_03.png
+qml: [AnimatedLion] 🍽️ Mode manger - Frame: 1 Image: qrc:/FILES/lion_mange_01.png
+qml: [AnimatedLion] 🔄 Source d'image changée: qrc:/FILES/lion_mange_01.png
+qml: [AnimatedLion] ✅ Image chargée: qrc:/FILES/lion_mange_01.png
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 98 Soif: 95 Humeur: 99 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 99 Image: qrc:/FILES/lion_tres_content.png
+qml: [AnimatedLion] 🔄 Source d'image changée: qrc:/FILES/lion_tres_content.png
+qml: [AnimatedLion] ✅ Image chargée: qrc:/FILES/lion_tres_content.png
+[Animal] Décroissance pour "Simba"
+qml: [AnimatedLion] 🍽️ Faim changée: 94
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 94 Soif: 95 Humeur: 99 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 99 Image: qrc:/FILES/lion_tres_content.png
+qml: [AnimatedLion] 🥤 Soif changée: 92
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 94 Soif: 92 Humeur: 99 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 99 Image: qrc:/FILES/lion_tres_content.png
+qml: [AnimatedLion] 😊 Humeur changée: 97
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 94 Soif: 92 Humeur: 97 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 97 Image: qrc:/FILES/lion_tres_content.png
+[LionManager] 📱 CLIENT - État reçu du serveur: QJsonObject({"affection":94,"energy":91,"hunger":85,"mood":"joyeux","thirst":85})
+[LionManager] 📱 CLIENT - Synchronisation: Hunger: 90 => 85 Thirst: 90 => 85 Affection: 96 => 94 Mood: "joyeux" => "joyeux"
+qml: [AnimatedLion] 🍽️ Faim changée: 85
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 85 Soif: 92 Humeur: 97 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 97 Image: qrc:/FILES/lion_tres_content.png
+[main] 🔄 Sync Faim: 94 => 85
+qml: [AnimatedLion] 🥤 Soif changée: 85
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 85 Soif: 85 Humeur: 97 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 97 Image: qrc:/FILES/lion_tres_content.png
+[main] 🔄 Sync Soif: 92 => 85
+qml: [AnimatedLion] 😊 Humeur changée: 94
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 85 Soif: 85 Humeur: 94 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 94 Image: qrc:/FILES/lion_tres_content.png
+[main] 🔄 Sync Humeur: 97 => 94
+[LionManager] 🔄 CLIENT - État local synchronisé avec le serveur
+qml: 🔄 Aliment Pomme rechargé et disponible
+[Animal] Décroissance pour "Simba"
+qml: [AnimatedLion] 🍽️ Faim changée: 81
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 81 Soif: 85 Humeur: 94 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 94 Image: qrc:/FILES/lion_tres_content.png
+qml: [AnimatedLion] 🥤 Soif changée: 82
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 81 Soif: 82 Humeur: 94 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 94 Image: qrc:/FILES/lion_tres_content.png
+qml: [AnimatedLion] 😊 Humeur changée: 92
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 81 Soif: 82 Humeur: 92 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 92 Image: qrc:/FILES/lion_tres_content.png
+[LionManager] 📱 CLIENT - État reçu du serveur: QJsonObject({"affection":92,"energy":88,"hunger":80,"mood":"joyeux","thirst":80})
+[LionManager] 📱 CLIENT - Synchronisation: Hunger: 85 => 80 Thirst: 85 => 80 Affection: 94 => 92 Mood: "joyeux" => "joyeux"
+qml: [AnimatedLion] 🍽️ Faim changée: 80
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 80 Soif: 82 Humeur: 92 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 92 Image: qrc:/FILES/lion_tres_content.png
+[main] 🔄 Sync Faim: 81 => 80
+qml: [AnimatedLion] 🥤 Soif changée: 80
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 80 Soif: 80 Humeur: 92 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 92 Image: qrc:/FILES/lion_tres_content.png
+[main] 🔄 Sync Soif: 82 => 80
+[main] 🔄 Sync Humeur: 92 => 92
+[LionManager] 🔄 CLIENT - État local synchronisé avec le serveur
+[Animal] Décroissance pour "Simba"
+qml: [AnimatedLion] 🍽️ Faim changée: 76
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 76 Soif: 80 Humeur: 92 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 92 Image: qrc:/FILES/lion_tres_content.png
+qml: [AnimatedLion] 🥤 Soif changée: 77
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 76 Soif: 77 Humeur: 92 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 92 Image: qrc:/FILES/lion_tres_content.png
+qml: [AnimatedLion] 😊 Humeur changée: 90
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 76 Soif: 77 Humeur: 90 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 90 Image: qrc:/FILES/lion_tres_content.png
+[LionManager] 📱 CLIENT - État reçu du serveur: QJsonObject({"affection":90,"energy":85,"hunger":75,"mood":"joyeux","thirst":75})
+[LionManager] 📱 CLIENT - Synchronisation: Hunger: 80 => 75 Thirst: 80 => 75 Affection: 92 => 90 Mood: "joyeux" => "joyeux"
+qml: [AnimatedLion] 🍽️ Faim changée: 75
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 75 Soif: 77 Humeur: 90 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 90 Image: qrc:/FILES/lion_tres_content.png
+[main] 🔄 Sync Faim: 76 => 75
+qml: [AnimatedLion] 🥤 Soif changée: 75
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 75 Soif: 75 Humeur: 90 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 90 Image: qrc:/FILES/lion_tres_content.png
+[main] 🔄 Sync Soif: 77 => 75
+[main] 🔄 Sync Humeur: 90 => 90
+[LionManager] 🔄 CLIENT - État local synchronisé avec le serveur
+[Animal] Décroissance pour "Simba"
+qml: [AnimatedLion] 🍽️ Faim changée: 71
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 71 Soif: 75 Humeur: 90 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 90 Image: qrc:/FILES/lion_tres_content.png
+qml: [AnimatedLion] 🥤 Soif changée: 72
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 71 Soif: 72 Humeur: 90 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 90 Image: qrc:/FILES/lion_tres_content.png
+qml: [AnimatedLion] 😊 Humeur changée: 88
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 71 Soif: 72 Humeur: 88 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 88 Image: qrc:/FILES/lion_tres_content.png
+qml: [DraggableItem] Début du drag: Eau
+qml: [DropArea] Aliment entré dans la zone
+qml: [DraggableItem] Fin du drag: Eau
+qml: [DraggableItem] Position globale au relâchement: 657.87890625 384.91015625
+qml: [DraggableItem] ✅ Drop détecté sur cible valide!
+qml: [Main] Aliment droppé: Eau
+[Animal] "Simba" reçoit "Eau"
+[EffectHandler] "Faim" traite "Eau"
+[EffectHandler] "Soif" traite "Eau"
+[SoifHandler] "Eau" impact soif: 20
+qml: [AnimatedLion] 🥤 Soif changée: 92
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 71 Soif: 92 Humeur: 88 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 88 Image: qrc:/FILES/lion_tres_content.png
+[EffectHandler] "Humeur" traite "Eau"
+[HumeurHandler] "Eau" impact humeur: 2
+qml: [AnimatedLion] 😊 Humeur changée: 90
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 71 Soif: 92 Humeur: 90 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 90 Image: qrc:/FILES/lion_tres_content.png
+[EffectHandler] "Empoisonnement" traite "Eau"
+[Lion] 🦁 "Simba" réagit à "Eau"
+qml: [AnimatedLion] 🍽️ Réaction à l'aliment: 🦁 Simba boit prudemment...  😊
+qml: [AnimatedLion] 🍽️ Mode manger - Frame: 1 Image: qrc:/FILES/lion_mange_01.png
+qml: [AnimatedLion] 🔄 Source d'image changée: qrc:/FILES/lion_mange_01.png
+qml: [AnimatedLion] ✅ Image chargée: qrc:/FILES/lion_mange_01.png
+qml: [DraggableItem] Marquer Eau comme utilisé
+qml: [DropArea] Aliment sorti de la zone
+qml: [AnimatedLion] 🍽️ Mode manger - Frame: 2 Image: qrc:/FILES/lion_mange_02.png
+qml: [AnimatedLion] 🔄 Source d'image changée: qrc:/FILES/lion_mange_02.png
+qml: [AnimatedLion] ✅ Image chargée: qrc:/FILES/lion_mange_02.png
+qml: [AnimatedLion] 🍽️ Mode manger - Frame: 3 Image: qrc:/FILES/lion_mange_03.png
+qml: [AnimatedLion] 🔄 Source d'image changée: qrc:/FILES/lion_mange_03.png
+qml: [AnimatedLion] ✅ Image chargée: qrc:/FILES/lion_mange_03.png
+qml: [AnimatedLion] 🍽️ Mode manger - Frame: 1 Image: qrc:/FILES/lion_mange_01.png
+qml: [AnimatedLion] 🔄 Source d'image changée: qrc:/FILES/lion_mange_01.png
+qml: [AnimatedLion] ✅ Image chargée: qrc:/FILES/lion_mange_01.png
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 71 Soif: 92 Humeur: 90 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 90 Image: qrc:/FILES/lion_tres_content.png
+qml: [AnimatedLion] 🔄 Source d'image changée: qrc:/FILES/lion_tres_content.png
+qml: [AnimatedLion] ✅ Image chargée: qrc:/FILES/lion_tres_content.png
+[LionManager] 📱 CLIENT - État reçu du serveur: QJsonObject({"affection":88,"energy":82,"hunger":70,"mood":"joyeux","thirst":70})
+[LionManager] 📱 CLIENT - Synchronisation: Hunger: 75 => 70 Thirst: 75 => 70 Affection: 90 => 88 Mood: "joyeux" => "joyeux"
+qml: [AnimatedLion] 🍽️ Faim changée: 70
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 70 Soif: 92 Humeur: 90 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 90 Image: qrc:/FILES/lion_tres_content.png
+[main] 🔄 Sync Faim: 71 => 70
+qml: [AnimatedLion] 🥤 Soif changée: 70
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 70 Soif: 70 Humeur: 90 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 90 Image: qrc:/FILES/lion_tres_content.png
+[main] 🔄 Sync Soif: 92 => 70
+qml: [AnimatedLion] 😊 Humeur changée: 88
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 70 Soif: 70 Humeur: 88 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 88 Image: qrc:/FILES/lion_tres_content.png
+[main] 🔄 Sync Humeur: 90 => 88
+[LionManager] 🔄 CLIENT - État local synchronisé avec le serveur
+[Animal] Décroissance pour "Simba"
+qml: [AnimatedLion] 🍽️ Faim changée: 66
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 66 Soif: 70 Humeur: 88 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 88 Image: qrc:/FILES/lion_tres_content.png
+qml: [AnimatedLion] 🥤 Soif changée: 67
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 66 Soif: 67 Humeur: 88 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 88 Image: qrc:/FILES/lion_tres_content.png
+qml: [AnimatedLion] 😊 Humeur changée: 86
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 66 Soif: 67 Humeur: 86 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 86 Image: qrc:/FILES/lion_tres_content.png
+qml: 🔄 Aliment Eau rechargé et disponible
+[LionManager] 📱 CLIENT - État reçu du serveur: QJsonObject({"affection":86,"energy":79,"hunger":65,"mood":"joyeux","thirst":65})
+[LionManager] 📱 CLIENT - Synchronisation: Hunger: 70 => 65 Thirst: 70 => 65 Affection: 88 => 86 Mood: "joyeux" => "joyeux"
+qml: [AnimatedLion] 🍽️ Faim changée: 65
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 65 Soif: 67 Humeur: 86 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 86 Image: qrc:/FILES/lion_tres_content.png
+[main] 🔄 Sync Faim: 66 => 65
+qml: [AnimatedLion] 🥤 Soif changée: 65
+qml: [AnimatedLion] 📊 État actuel du lion - Faim: 65 Soif: 65 Humeur: 86 État: Normal EstMort: false
+qml: [AnimatedLion] 😊 État Normal - Humeur: 86 Image: qrc:/FILES/lion_tres_content.png
+[main] 🔄 Sync Soif: 67 => 65
+[main] 🔄 Sync Humeur: 86 => 86
+[LionManager] 🔄 CLIENT - État local synchronisé avec le serveur

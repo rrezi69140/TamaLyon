@@ -7,6 +7,9 @@
 #include "WebSocketServer.h"
 #include "WebSocketClient.h"
 
+// Forward declaration
+class AlimentManager;
+
 class LionManager : public QObject {
     Q_OBJECT
     Q_PROPERTY(QString mood READ mood WRITE setMood NOTIFY moodChanged)
@@ -38,6 +41,12 @@ public:
     Q_INVOKABLE bool isHostMode() const;
 
     QString generateStateMessage() const;
+    
+    // Connexion avec AlimentManager
+    void setAlimentManager(AlimentManager* alimentManager);
+    
+    // Méthode pour diffuser l'état actuel
+    void broadcastCurrentState();
 
 signals:
     void moodChanged();
@@ -64,6 +73,9 @@ private:
     WebSocketServer *server;
     WebSocketClient *client;
     bool isHost;
+    
+    // Référence à AlimentManager
+    AlimentManager* m_alimentManager;
 
     void updateMood();
     void broadcastState();

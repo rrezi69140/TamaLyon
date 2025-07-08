@@ -7,8 +7,9 @@
 #include "Aliment.h"
 #include "AlimentsConcrets.h"
 
-// Forward declaration
+// Forward declarations
 class Lion;
+class LionManager;
 
 /**
  * @brief Gestionnaire des aliments pour l'interface QML
@@ -22,8 +23,9 @@ public:
     explicit AlimentManager(QObject *parent = nullptr);
     ~AlimentManager();
 
-    // Méthode pour connecter le lion
+    // Méthodes pour connecter le lion et le gestionnaire réseau
     void setLion(Lion* lion);
+    void setLionManager(LionManager* lionManager);
 
     // Propriété pour QML
     QQmlListProperty<Aliment> alimentsDisponibles();
@@ -34,6 +36,9 @@ public:
     Q_INVOKABLE int getAlimentCount() const;
     Q_INVOKABLE QString getAlimentInfo(int index) const;
     Q_INVOKABLE void nourrirLion(int alimentIndex) const;
+    
+    // Méthode spécifique pour l'hôte traitant les commandes clients
+    void processClientAlimentCommand(int alimentIndex) const;
 
 signals:
     void alimentsChanged();
@@ -41,6 +46,7 @@ signals:
 private:
     QList<Aliment*> m_aliments;
     Lion* m_lion; // Référence au lion
+    LionManager* m_lionManager; // Référence au gestionnaire réseau
     
     void initializeAliments();
     
