@@ -1,9 +1,36 @@
-# Rpertoires  ignorer
+# Répertoires à ignorer
 build/
+build-*/
+.tmp/
+debug/
+release/
 
+# Fichiers générés par Qt
+qrc_*.cpp
+moc_*.cpp
+moc_*.h
+ui_*.h
+Makefile*
+*.pro.user
+*.pro.user.*
+
+# Fichiers de build
+*.o
+*.obj
+*.so
+*.dll
+*.dylib
+*.app/
+*.exe
 
 # Fichiers temporaires
 *.autosave
 .DS_Store
 CMakeLists.txt.user
+*~
+*.swp
+*.tmp
+
+# Logs de test
+logs_*.log
 
